@@ -3,7 +3,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-uglify-es');
   grunt.loadNpmTasks('grunt-git-authors');
   grunt.loadNpmTasks('grunt-retire');
   grunt.loadNpmTasks('grunt-nsp');
@@ -90,8 +90,9 @@ module.exports = function (grunt) {
         //   create a map so at least if needed we can get back to the generated javascript
         //   uglified version is 'client.js', so we don't need changes elsewhere.
         options: {
-          sourceMap: true,
-          sourceMapRoot: "/",
+          sourceMap: {
+            root: "/"
+          },
           sourceMapName: 'client/client.map',
           banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
                   '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
@@ -108,7 +109,7 @@ module.exports = function (grunt) {
       test: {
         options: {
           reporter: 'spec',
-          require: 'coffee-script/register'
+          require: 'coffeescript/register'
         },
         src: [
           'test/util.coffee',
@@ -132,7 +133,7 @@ module.exports = function (grunt) {
   });
 
   // build without sourcemaps
-  grunt.registerTask('build', ['clean', 'mochaTest', 'browserify:packageClient', 'browserify:testClient', 'uglify:packageClient']);
+  grunt.registerTask('build', ['clean', 'browserify:packageClient', 'browserify:testClient', 'uglify:packageClient']);
 
   // check for out-of-date libraries and known vulnerabilities
 

@@ -1,7 +1,7 @@
 {
-  "name": "wiki-client",
+  "name": "wiki-client-dat",
   "version": "0.13.0",
-  "description": "Federated Wiki - Client-side Javascript",
+  "description": "Federated Wiki - Dat variant of the Client-side Javascript",
   "keywords": [
     "wiki",
     "federated wiki",
@@ -21,7 +21,7 @@
     {
       "name": "Paul Rodwell",
       "email": "paul.rodwell@btinternet.com",
-      "url": "http://wiki-paul90.rhcloud.com"
+      "url": "https://rodwell.me"
     }
   ],
   "dependencies": {
@@ -33,28 +33,30 @@
     "test": "grunt mochaTest"
   },
   "devDependencies": {
-    "coffee-script": "^1.12.4",
-    "coffeeify": "^2.1.0",
+    "@mapbox/sanitize-caja": "^0.1.4",
+    "coffeeify": "^3.0.1",
+    "coffeescript": "^2.3.0",
     "expect.js": "^0.3.1",
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.2.0",
     "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-uglify": "^3.0.1",
+    "grunt-contrib-uglify-es": "^3.3.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-git-authors": "^3.2.0",
     "grunt-mocha-test": "^0.13.2",
     "grunt-nsp": "^2.3.1",
     "grunt-retire": "^1.0.3",
-    "mocha": "^3.1.2",
-    "sinon": "^3.2.1"
+    "marked": "^0.3.17",
+    "mocha": "^5.0.2",
+    "sinon": "^4.4.2"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fedwiki/wiki-client"
+    "url": "https://github.com/paul90/wiki-client-dat"
   },
   "bugs": {
-    "url": "https://github.com/fedwiki/wiki-client/issues"
+    "url": "https://github.com/paul90/wiki-client-dat/issues"
   },
   "engines": {
     "node": ">=6.x"
