@@ -10,6 +10,11 @@
 
 wiki = {}
 
+#
+datHandler = require './datHandler'
+wiki.pluginRoutes = datHandler.pluginRoutes
+wiki.pluginPages = datHandler.pluginPages
+
 # known use: (eventually all server directed xhr and some tags)
 
 siteAdapter = require './siteAdapter'

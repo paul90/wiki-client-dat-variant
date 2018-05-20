@@ -150,7 +150,19 @@ siteAdapter.origin = {
       dataType: 'json'
       url: "/#{route}"
       success: (page) -> done null, page
-      error: (xhr, type, msg) -> done {msg, xhr}, null
+      error: (xhr, type, msg) ->
+        if wiki.pluginPages[route]
+          pluginPageURL = wiki.pluginPages[route].url + "/pages/" + route
+          $.ajax
+            type: 'GET'
+            dataType: 'json'
+            url: pluginPageURL
+            success: (page) ->
+              page['plugin'] = wiki.pluginPages[route].plugin
+              done null, page
+            error: (xhr, type, msg) -> done {msg, xhr}, null
+        else
+          done {msg, xhr}, null
   put: (route, data, done) ->
     console.log "wiki.orgin.put #{route}"
     $.ajax

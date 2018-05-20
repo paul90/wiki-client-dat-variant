@@ -3,6 +3,8 @@
 
 module.exports = plugin = {}
 
+pluginDats = {}
+
 escape = (s) ->
   (''+s)
     .replace(/&/g, '&amp;')
@@ -38,10 +40,10 @@ getScript = plugin.getScript = (url, callback = () ->) ->
 
 plugin.get = plugin.getPlugin = (name, callback) ->
   return callback(window.plugins[name]) if window.plugins[name]
-  getScript "/plugins/#{name}/#{name}.js", () ->
-    return callback(window.plugins[name]) if window.plugins[name]
-    getScript "/plugins/#{name}.js", () ->
-      callback(window.plugins[name])
+  console.log "plugin get: ", name
+  pluginScriptUrl = "#{wiki.pluginRoutes[name]}/client/#{name}.js"
+  getScript pluginScriptUrl, () ->
+    return callback(window.plugins[name])
 
 plugin.do = plugin.doPlugin = (div, item, done=->) ->
   error = (ex, script) ->
