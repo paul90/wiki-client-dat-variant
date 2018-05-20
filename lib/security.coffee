@@ -6,5 +6,5 @@ plugin = require './plugin'
 
 module.exports = (user) ->
 
-  plugin.getScript "/security/security.js", () ->
-    window.plugins.security.setup(user)
+#  plugin.getScript "/security/security.js", () ->
+#    window.plugins.security.setup(user)
