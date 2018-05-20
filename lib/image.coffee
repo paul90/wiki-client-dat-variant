@@ -7,11 +7,14 @@ editor = require './editor'
 resolve = require './resolve'
 
 ipfs = false
+###
+removing test for ipfs local gateway
 gateway = "http://127.0.0.1:8080"
 $.ajax "#{gateway}/ipfs/Qmb1oS3TaS8vekxXqogoYsixe47sXcVxQ22kPWH8VSd7yQ",
   timeout: 30000
   success: (data) -> ipfs = data == "wiki\n"
   complete: (xhr, status) -> console.log "ipfs gateway #{status}"
+###
 
 emit = ($item, item) ->
   item.text ||= item.caption
