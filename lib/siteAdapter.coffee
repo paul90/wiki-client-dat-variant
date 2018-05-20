@@ -65,6 +65,19 @@ findAdapterQ = queue( (task, done) ->
     done "//#{site}"
   ), ->
     switch location.protocol
+      when 'dat:'
+        testURL = "https://#{site}/favicon.png"
+        testWikiSite testURL, (->
+          sitePrefix[site] = "https://#{site}"
+          done "https://#{site}"
+        ), ->
+          testURL = "http://#{site}/favicon.png"
+          testWikiSite testURL, (->
+            sitePrefix[site] = "http://#{site}"
+            done "http://#{site}"
+          ), ->
+            sitePrefix[site] = ""
+            done ""
       when 'http:'
         testURL = "https://#{site}/favicon.png"
         testWikiSite testURL, (->
