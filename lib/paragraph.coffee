@@ -1,27 +1,40 @@
-# The Paragraph plugin holds text that can be edited and rendered
-# with hyperlinks. It will eventually escape html tags but for the
-# moment we live dangerously.
+# A temporary text reunification core plugin, this will eventually
+# be renamed to paragraph, and replace the Paragraph, HTML, and
+# Markdown plugins.
 
 editor = require './editor'
 resolve = require './resolve'
-itemz = require './itemz'
 
-type = (text) ->
-  if text.match /<(i|b|p|a|h\d|hr|br|li|img|div|span|table|blockquote)\b.*?>/i
-    'html'
-  else
-    'markdown'
+# marked or marked3 - used marked3 in the markdown plugin...
+marked = require 'marked'
+sanitize = require '@mapbox/sanitize-caja'
+
+# dataLine is used in handling Git Flavored Markdown task lists
+dataline = 0
+
+renderer = new (marked.Renderer)()
+
+# wiki headers are at least level 3
+renderer.header = (text, level) ->
+  level = level + 3
+  "<h#{level}>text</h#{level}>"
+
+markedOptions =
+  gfm: true
+  sanitize: false
+  taskLists: true
+  renderer: renderer
+  breaks: false
+
+expand = (text) ->
+  dataLine = 0
+  marked(text, markedOptions)
 
 emit = ($item, item) ->
-  for text in item.text.split /\n\n+/
-    $item.append "<p>#{resolve.resolveLinks(text)}</p>" if text.match /\S/
+  $item.append "#{resolve.resolveLinks(sanitize(item.text), expand)}"
 
 bind = ($item, item) ->
   $item.dblclick (e) ->
-    if e.shiftKey
-      item.type = type(item.text)
-      itemz.replaceItem $item, 'paragraph', item
-    else
-      editor.textEditor $item, item, {'append': true}
+    editor.textEditor $item, item, {'append': true}
 
 module.exports = {emit, bind}
