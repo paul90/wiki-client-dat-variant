@@ -17,22 +17,26 @@ state.pagesInDom = ->
   $.makeArray $(".page").map (_, el) -> el.id
 
 state.urlPages = ->
-  (i for i in $(location).attr('pathname').split('/') by 2)[1..]
+  hash = "/" + $(location).attr('hash').substring(1)
+  (i for i in hash.split('/') by 2)[1..]
 
 state.locsInDom = ->
   $.makeArray $(".page").map (_, el) ->
     $(el).data('site') or 'view'
 
 state.urlLocs = ->
-  (j for j in $(location).attr('pathname').split('/')[1..] by 2)
+  hash = "/" + $(location).attr('hash').substring(1)
+  (j for j in hash.split('/')[1..] by 2)
 
 state.setUrl = ->
   document.title = lineup.bestTitle()
   if history and history.pushState
     locs = state.locsInDom()
     pages = state.pagesInDom()
-    url = ("/#{locs?[idx] or 'view'}/#{page}" for page, idx in pages).join('')
-    unless url is $(location).attr('pathname')
+    hash = ("#{locs?[idx] or 'view'}/#{page}" for page, idx in pages).join('/')
+    url = "/#" + hash
+    console.log "setUrl", url
+    unless url is $(location).attr('pathname') + $(location).attr('hash')
       history.pushState(null, null, url)
 
 state.show = (e) ->
@@ -69,4 +73,3 @@ state.first = ->
   oldPages = state.pagesInDom()
   for urlPage, idx in firstUrlPages when urlPage not in oldPages
     link.createPage(urlPage, firstUrlLocs[idx]) unless urlPage is ''
-
