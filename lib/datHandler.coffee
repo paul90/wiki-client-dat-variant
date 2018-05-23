@@ -12,7 +12,7 @@ pluginPages = {}
 clientOrigin = ''
 wikiOrigin = ''
 
-datHandler.pluginRoutes = pluginRoutes
+datHandler.archive = new DatArchive(window.location.origin)
 
 datHandler.pluginPages = pluginPages
 
@@ -55,8 +55,6 @@ datHandler.init = init = () ->
 
   clientOrigin = new URL($('script[src$="/client.js"]').attr('src')).origin
   wikiOrigin = window.location.origin
-
-  datHandler.archive = new DatArchive(wikiOrigin)
 
   console.log "client origin", clientOrigin
   console.log "wiki origin", wikiOrigin

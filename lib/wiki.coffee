@@ -12,6 +12,7 @@ wiki = {}
 
 #
 datHandler = require './datHandler'
+wiki.archive = datHandler.archive
 wiki.pluginRoutes = datHandler.pluginRoutes
 wiki.pluginPages = datHandler.pluginPages
 

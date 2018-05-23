@@ -120,7 +120,16 @@ pushToLocal = ($page, pagePutInfo, action) ->
     $page.addClass("local")
 
 pushToServer = ($page, pagePutInfo, action) ->
+  if action.type is 'create'
+    path = {title: action.item.title, story: [], journal: []}
+  else
+    page = lineup.atKey($page.data('key')).getRawPage()
+    page.journal = [] unless page.journal?
+  revision.apply page, action
+  wiki.origin.put pagePutInfo.slug, page, (err) ->
+    console.log "put error", err
 
+###  replace the server based code with the above
   # bundle rawPage which server will strip out
   bundle = deepCopy(action)
   pageObject = lineup.atKey $page.data('key')
@@ -137,6 +146,7 @@ pushToServer = ($page, pagePutInfo, action) ->
       addToJournal $page.find('.journal'), action
       if action.type == 'fork'
         wiki.local.delete $page.attr('id')
+###
 
 pageHandler.put = ($page, action) ->
 

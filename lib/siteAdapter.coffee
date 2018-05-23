@@ -165,6 +165,12 @@ siteAdapter.origin = {
           done {msg, xhr}, null
   put: (route, data, done) ->
     console.log "wiki.orgin.put #{route}"
+    console.log "put data", data
+    filePath = "/wiki/#{route}.json"
+    fileData = JSON.stringify(data)
+    await wiki.archive.writeFile(filePath, fileData)
+
+    ### replacing with dat code
     $.ajax
       type: 'PUT'
       url: "/page/#{route}/action"
@@ -172,6 +178,7 @@ siteAdapter.origin = {
         'action': JSON.stringify(data)
       success: () -> done null
       error: (xhr, type, msg) -> done {xhr, type, msg}
+    ###
   delete: (route, done) ->
     console.log "wiki.origin.delete #{route}"
     $.ajax
