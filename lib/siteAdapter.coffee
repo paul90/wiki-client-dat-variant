@@ -4,6 +4,8 @@
 queue = require 'async/queue'
 localForage = require 'localforage'
 
+sitemapHandler = require './sitemapHandler'
+
 module.exports = siteAdapter = {}
 
 # we save the site prefix once we have determined it...
