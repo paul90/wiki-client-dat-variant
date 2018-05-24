@@ -6,8 +6,8 @@ module.exports = datHandler = {}
 
 # we save details of each plugin
 pluginRoutes = {}
-
 pluginPages = {}
+factories = []
 
 clientOrigin = ''
 wikiOrigin = ''
@@ -15,6 +15,8 @@ wikiOrigin = ''
 datHandler.archive = new DatArchive(window.location.origin)
 
 datHandler.pluginPages = pluginPages
+datHandler.pluginRoutes = pluginRoutes
+datHandler.factories = factories
 
 datHandler.init = init = () ->
 
@@ -51,6 +53,20 @@ datHandler.init = init = () ->
         # we are only interested in page files
         pluginPages[page] = {url: pluginURL, plugin: plugin} if page.endsWith('.json')
 
+  buildFactoriesList = () ->
+    _.each pluginRoutes, (pluginURL, plugin) ->
+      url = pluginURL + "/factory.json"
+      fetch(url)
+      .then (response) ->
+        console.log response
+        return response.json()
+      .then (factoryJson) ->
+        console.log factoryJson
+        factories.push factoryJson
+      .catch (err) ->
+        console.log "No factory details for #{plugin}"
+
+
 
 
   clientOrigin = new URL($('script[src$="/client.js"]').attr('src')).origin
@@ -62,6 +78,8 @@ datHandler.init = init = () ->
   await loadPluginData()
 
   await buildPluginPageList()
+
+  await buildFactoriesList()
 
 
 init()

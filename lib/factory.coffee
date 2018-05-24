@@ -50,10 +50,8 @@ emit = ($item, item) ->
   else if window.catalog?
     showMenu()
   else
-    wiki.origin.get 'system/factories.json', (error, data) ->
-      console.log 'factory', data
-      window.catalog = data
-      showMenu()
+    window.catalog = wiki.factories
+    showMenu()
 
 bind = ($item, item) ->
 
