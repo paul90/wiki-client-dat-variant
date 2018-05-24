@@ -169,6 +169,13 @@ siteAdapter.origin = {
     filePath = "/wiki/#{route}.json"
     fileData = JSON.stringify(data)
     await wiki.archive.writeFile(filePath, fileData)
+    .then (err) ->
+      if err
+        console.log "siteAdapter.origin.put #{route} failed:", reason
+        done {reason}
+      else
+        done null
+
 
     ### replacing with dat code
     $.ajax
