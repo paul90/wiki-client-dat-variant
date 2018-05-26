@@ -125,19 +125,20 @@ pushToServer = ($page, pagePutInfo, action) ->
   else
     page = lineup.atKey($page.data('key')).getRawPage()
     page.journal = [] unless page.journal?
-  revision.apply page, action
+  # revision.apply page, action
+  pageObject = lineup.atKey $page.data('key')
+  pageObject.apply action if pageObject?.apply
+  addToJournal $page.find('.journal'), action
+  if action.type == 'fork'
+    wiki.local.delete $page.attr('id')
   wiki.origin.put pagePutInfo.slug, page, (err) ->
     console.log "put error", err
     if err
       action.error = { type: "dat write error", msg: err}
       pushToLocal $page, pagePutInfo, action
     else
-      pageObject = lineup.atKey $page.data('key')
-      pageObject.apply action if pageObject?.apply
       neighborhood.updateSitemap pageObject
-      addToJournal $page.find('.journal'), action
-      if action.type == 'fork'
-        wiki.local.delete $page.attr('id')
+
 
 ###  replace the server based code with the above
   # bundle rawPage which server will strip out
