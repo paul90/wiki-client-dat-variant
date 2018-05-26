@@ -1,11 +1,12 @@
 {
   "name": "wiki-client-dat",
-  "version": "0.13.0",
-  "description": "Federated Wiki - Dat variant of the Client-side Javascript",
+  "version": "0.0.1",
+  "description": "Federated Wiki - dat variant of the Client-side Javascript",
   "keywords": [
     "wiki",
     "federated wiki",
-    "wiki client"
+    "wiki client",
+    "dat"
   ],
   "author": {
     "name": "Ward Cunningham",
@@ -59,6 +60,6 @@
     "url": "https://github.com/paul90/wiki-client-dat/issues"
   },
   "engines": {
-    "node": ">=6.x"
+    "node": ">=8.x"
   }
 }

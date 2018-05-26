@@ -1,6 +1,0 @@
-{
-  "title": "Federated Wiki (testbed)",
-  "description": "A testbed for exploring the issues associated with a dat based variant of the Federated Wiki client",
-  "fallback_page": "/client/oops.html",
-  "web_root": "/client"
-}
