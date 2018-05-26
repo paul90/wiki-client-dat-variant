@@ -43,6 +43,15 @@ buildSitemap = () ->
   .then (pages) ->
     return pages
 
+sitemapHandler.update = (sitemap) ->
+  console.log "updating sitemap", sitemap
+  # write sitemap to dat
+  await wiki.archive.writeFile("/wiki/system/sitemap.json", JSON.stringify(sitemap))
+  .then (err) ->
+    if err
+      console.log "sitemap update failed:", reason
+
+
 
 init = () ->
   # fetch sitemap

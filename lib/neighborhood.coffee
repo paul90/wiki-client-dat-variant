@@ -3,6 +3,7 @@
 # slowly and keeps track of get requests in flight.
 
 _ = require 'underscore'
+sitemapHandler = require "./sitemapHandler"
 
 module.exports = neighborhood = {}
 
@@ -65,6 +66,7 @@ neighborhood.updateSitemap = (pageObject)->
   entry = {slug, date, title, synopsis}
   sitemap = neighborInfo.sitemap
   index = sitemap.findIndex (slot) -> slot.slug == slug
+  sitemapHandler.update(sitemap)
   if index >= 0
     sitemap[index] = entry
   else
@@ -80,6 +82,7 @@ neighborhood.deleteFromSitemap = (pageObject)->
   index = sitemap.findIndex (slot) -> slot.slug == slug
   return unless index >= 0
   sitemap.splice(index)
+  sitemapHandler.update(sitemap)
   $('body').trigger 'delete-neighbor-done', site
 
 neighborhood.listNeighbors = ()->
