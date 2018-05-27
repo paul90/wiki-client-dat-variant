@@ -1,6 +1,6 @@
 # wiki-client (dat variant)
 
-*this is a work in progress*
+*This is a local developer copy of the client*
 
 A variant of the Federated Wiki client-side javascript for exploring using beaker browser, and dat based federated wiki sites.
 
