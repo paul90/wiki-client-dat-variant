@@ -158,10 +158,16 @@ newPage = (json, site) ->
     else
       "view/welcome-visitors/view/#{slug}"
     if isRemote()
-      # "//#{site}/#{path}"
-      wiki.site(site).getDirectURL(path)
+      link = wiki.site(site).getDirectURL(path)
+      if link.protocol is "dat:"
+        "dat://#{site}/##{path}"
+      else
+        link
     else
-      "/#{path}"
+      if window.location.protocol is "dat:"
+        "/##{path}"
+      else
+        "/#{path}"
 
   notDuplicate = (journal, action) ->
     for each in journal

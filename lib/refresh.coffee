@@ -132,16 +132,20 @@ createFactory = ($page) ->
   pageHandler.put $page, {item: item, id: item.id, type: "add", after: before?.id}
 
 handleHeaderClick = (e) ->
-    e.preventDefault()
-    lineup.debugSelfCheck ($(each).data('key') for each in $('.page'))
-    $page = $(e.target).parents('.page:first')
-    crumbs = lineup.crumbs $page.data('key'), location.host
-    [target, ] = crumbs
-    [prefix, ] = wiki.site(target).getDirectURL('').split('/')
-    if prefix is ''
-      prefix = window.location.protocol
-    newWindow = window.open "#{prefix}//#{crumbs.join '/'}", target
-    newWindow.focus()
+  e.preventDefault()
+
+  # this really is not needed !!!
+  # we already create the correct link in emitHeader...
+  lineup.debugSelfCheck ($(each).data('key') for each in $('.page'))
+  $page = $(e.target).parents('.page:first')
+  crumbs = lineup.crumbs $page.data('key'), location.host
+  [target, ] = crumbs
+  [prefix, ] = wiki.site(target).getDirectURL('').split('/')
+  if prefix is ''
+    prefix = window.location.protocol
+  newWindow = window.open "#{prefix}//#{crumbs.join '/'}", target
+  newWindow.focus()
+
 
 
 emitHeader = ($header, $page, pageObject) ->
@@ -157,7 +161,8 @@ emitHeader = ($header, $page, pageObject) ->
       #{resolve.escape pageObject.getTitle()}
     </h1>
   """
-  $header.find('a').on 'click', handleHeaderClick
+  # don't need a click handler here!!! we already have the correct link constructed...
+  # $header.find('a').on 'click', handleHeaderClick
 
 emitTimestamp = ($header, $page, pageObject) ->
   if $page.attr('id').match /_rev/
@@ -182,10 +187,13 @@ emitControls = ($journal) ->
 emitFooter = ($footer, pageObject) ->
   host = pageObject.getRemoteSite(location.host)
   slug = pageObject.getSlug()
+  pageLink = wiki.site(host).getDirectURL(slug) + ".html"
+  if host is window.location.host or pageLink.protocol is "dat:"
+    pageLink = "dat://" + host + "/#view/#{slug}"
   $footer.append """
     <a id="license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a> .
     <a class="show-page-source" href="#{wiki.site(host).getDirectURL(slug)}.json" title="source">JSON</a> .
-    <a href= "#{wiki.site(host).getDirectURL(slug)}.html" date-slug="#{slug}" target="#{host}">#{host} </a> .
+    <a href= "#{pageLink}" data-slug="#{slug}" target="#{host}">#{host} </a> .
     <a href= "#" class=search>search</a>
   """
 
