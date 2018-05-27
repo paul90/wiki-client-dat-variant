@@ -6,7 +6,6 @@ window.plugins =
   reference: require './reference'
   factory: require './factory'
   paragraph: require './paragraph'
-  markdown: require './paragraph'
   html: require './paragraph'
   image: require './image'
   future: require './future'
