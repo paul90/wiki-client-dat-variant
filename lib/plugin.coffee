@@ -71,7 +71,6 @@ plugin.do = plugin.doPlugin = (div, item, done=->) ->
           href="http://plugins.fed.wiki.org/about-plugins.html"
           title="http://plugins.fed.wiki.org/about-plugins.html">
             About Plugins
-            <img src="/images/external-link-ltr-icon.png">
           </a>
         </p>
       """

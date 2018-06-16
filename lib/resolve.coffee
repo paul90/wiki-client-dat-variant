@@ -44,7 +44,7 @@ resolve.resolveLinks = (string, sanitize=escape) ->
       match
 
   external = (match, href, protocol, rest) ->
-    stash """<a class="external" target="_blank" href="#{href}" title="#{href}" rel="nofollow">#{escape rest} <img src="/images/external-link-ltr-icon.png"></a>"""
+    stash """<a class="external" target="_blank" href="#{href}" title="#{href}" rel="nofollow">#{escape rest}</a>"""
 
   # markup conversion happens in four phases:
   #   - unexpected markers are adulterated
@@ -58,5 +58,3 @@ resolve.resolveLinks = (string, sanitize=escape) ->
     .replace /\[((http|https|ftp):.*?) (.*?)\]/gi, external
   sanitize string
     .replace /〖(\d+)〗/g, unstash
-
-
