@@ -42,13 +42,11 @@ datHandler.init = init = () ->
       url = new URL(pluginURL)
       datOrigin = url.origin
       pluginPath = url.pathname
-
       pluginArchive = new DatArchive(datOrigin)
       try
         pages = await pluginArchive.readdir(pluginPath + "/pages")
       catch error
         pages = []
-
       _.each pages, (page) ->
         # we are only interested in page files
         pluginPages[page] = {url: pluginURL, plugin: plugin} if page.endsWith('.json')
@@ -58,10 +56,8 @@ datHandler.init = init = () ->
       url = pluginURL + "/factory.json"
       fetch(url)
       .then (response) ->
-        console.log response
         return response.json()
       .then (factoryJson) ->
-        console.log factoryJson
         factories.push factoryJson
       .catch (err) ->
         console.log "No factory details for #{plugin}"
