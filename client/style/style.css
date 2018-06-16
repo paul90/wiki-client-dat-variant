@@ -15,7 +15,8 @@ a img {
   border: 0; }
 
 a.external::after {
-  content: url("/images/external-link-ltr-icon.png")
+  content: url("/images/external-link-ltr-icon.png");
+  padding-left: 3px;
 }
 
 body {
