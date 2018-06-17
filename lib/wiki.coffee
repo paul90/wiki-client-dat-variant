@@ -10,6 +10,9 @@
 
 wiki = {}
 
+
+wiki.clientOrigin = new URL(document.currentScript.src).origin
+
 #
 datHandler = require './datHandler'
 wiki.archive = datHandler.archive
