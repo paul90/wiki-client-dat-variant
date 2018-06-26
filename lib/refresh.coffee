@@ -190,10 +190,13 @@ emitFooter = ($footer, pageObject) ->
   pageLink = wiki.site(host).getDirectURL(slug) + ".html"
   if host is window.location.host or pageLink.protocol is "dat:"
     pageLink = "dat://" + host + "/#view/#{slug}"
+    pageLinkText = host.slice(0, 6) + '..' + host.slice(-2)
+  else
+    pageLinkText = host
   $footer.append """
     <a id="license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a> .
     <a class="show-page-source" href="#{wiki.site(host).getDirectURL(slug)}.json" title="source">JSON</a> .
-    <a href= "#{pageLink}" data-slug="#{slug}" target="#{host}">#{host} </a> .
+    <a href= "#{pageLink}" data-slug="#{slug}" target="#{host}">#{pageLinkText} </a> .
     <a href= "#" class=search>search</a>
   """
 
