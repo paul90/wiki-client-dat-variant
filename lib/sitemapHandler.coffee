@@ -77,9 +77,8 @@ init = () ->
     .then (newsitemap) ->
       originSitemap = newsitemap
       await wiki.archive.writeFile("/wiki/system/sitemap.json", JSON.stringify(newsitemap))
-      .then (err) ->
-        if err
-          console.log "sitemap create failed:", reason
+      .catch (error) ->
+        console.log "sitemap create failed:", error
   else
     originSitemap = retrievedSitemap
 

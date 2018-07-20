@@ -74,6 +74,7 @@ $ ->
   deletePage = (pageObject, $page) ->
     console.log 'fork to delete'
     pageHandler.delete pageObject, $page, (err) ->
+      console.log "legacy - deletePage ", err
       return if err?
       console.log 'server delete successful'
       if pageObject.isRecycler()

@@ -130,6 +130,12 @@ pushToServer = ($page, pagePutInfo, action) ->
   pageObject.apply action if pageObject?.apply
   addToJournal $page.find('.journal'), action
   if action.type == 'fork'
+    # if page already exists, move it into the recycler...
+    # but first we need to delete it from the recycler, if it exists...
+    await wiki.archive.unlink("/recycler/#{pagePutInfo.slug}.json")
+    .catch (e) ->
+    await wiki.archive.rename("/wiki/#{pagePutInfo.slug}.json", "/recycler/#{pagePutInfo.slug}.json")
+    .catch (error) -> console.log "copy to recycler", error
     wiki.local.delete $page.attr('id')
   wiki.origin.put pagePutInfo.slug, page, (err) ->
     console.log "put error", err
@@ -219,15 +225,14 @@ pageHandler.put = ($page, action) ->
     pushToServer($page, pagePutInfo, action)
 
 pageHandler.delete = (pageObject, $page, done) ->
-  console.log 'delete server-side'
   console.log 'pageObject:', pageObject
   if pageObject.isRecycler()
-    wiki.recycler.delete "#{pageObject.getSlug()}.json", (err) ->
+    wiki.recycler.delete "#{pageObject.getSlug()}", (err) ->
       more = ->
         done err
       setTimeout(more, 300)
   else
-    wiki.origin.delete "#{pageObject.getSlug()}.json", (err) ->
+    wiki.origin.delete "#{pageObject.getSlug()}", (err) ->
       more = ->
         # err = null
         neighborhood.deleteFromSitemap pageObject unless err?

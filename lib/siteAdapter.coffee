@@ -169,40 +169,68 @@ siteAdapter.origin = {
     filePath = "/wiki/#{route}.json"
     fileData = JSON.stringify(data)
     await wiki.archive.writeFile(filePath, fileData)
-    .then (err) ->
-      if err
-        console.log "siteAdapter.origin.put #{route} failed:", reason
-        done {reason}
-      else
-        done null
+    .then () ->
+      done null
+    .catch (error) ->
+      console.log "siteAdapter.origin.put #{route} failed:", reason
+      done {error}
   delete: (route, done) ->
+    console.log "deleting", route
+    filePath = "/wiki/#{route}.json"
+    recyclerPath = "/recycler/#{route}.json"
     console.log "wiki.origin.delete #{route}"
-    $.ajax
-      type: 'DELETE'
-      url: "/#{route}"
-      success: () -> done null
-      error: (xhr, type, msg) -> done {xhr, type, msg}
+    await wiki.archive.unlink(recyclerPath)
+    .catch () ->
+    await wiki.archive.rename(filePath, recyclerPath)
+    .then () ->
+      done null
+    .catch (error) ->
+      if error.toString().startsWith('ParentFolderDoesntExistError')
+        await wiki.archive.mkdir('/recycler')
+        .then ()->
+          await wiki.archive.rename(filePath, recyclerPath)
+          .then () ->
+            done null
+      console.log "siteAdapter.origin.delete #{route} failed:", error
+      done(error)
+
 }
 
 siteAdapter.recycler = {
-  flag: -> "/recycler/favicon.png"
+  flag: ->  "#{wiki.pluginRoutes["recycler"]}/client/recycler.png"
   getURL: (route) -> "/recycler/#{route}"
   getDirectURL: (route) -> "/recycler/#{route}"
   get: (route, done) ->
     console.log "wiki.recycler.get #{route}"
+    filePath = "/recycler/#{route}"
+    rawPageData = await wiki.archive.readFile(filePath)
+    page = JSON.parse(rawPageData)
+    done null, page
+    ###
     $.ajax
       type: 'GET'
       dataType: 'json'
       url: "/recycler/#{route}"
       success: (page) -> done null, page
       error: (xhr, type, msg) -> done {msg, xhr}, null
+    ###
   delete: (route, done) ->
     console.log "wiki.recycler.delete #{route}"
+    filePath = "/recycler/#{route}.json"
+    try
+      await wiki.archive.unlink(filePath)
+      .then () ->
+        done null
+    catch error
+      done {error}
+
+    ###
     $.ajax
       type: 'DELETE'
       url: "/recycler/#{route}"
       success: () -> done null
       error: (xhr, type, msg) -> done {xhr, type, msg}
+    ###
 }
 
 siteAdapter.site = (site) ->
