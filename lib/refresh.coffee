@@ -140,10 +140,11 @@ handleHeaderClick = (e) ->
   $page = $(e.target).parents('.page:first')
   crumbs = lineup.crumbs $page.data('key'), location.host
   [target, ] = crumbs
+  crumbs.shift()
   [prefix, ] = wiki.site(target).getDirectURL('').split('/')
   if prefix is ''
     prefix = window.location.protocol
-  newWindow = window.open "#{prefix}//#{crumbs.join '/'}", target
+  newWindow = window.open( "#{prefix}//#{target}/##{crumbs.join '/'}", target )
   newWindow.focus()
 
 
@@ -161,8 +162,7 @@ emitHeader = ($header, $page, pageObject) ->
       #{resolve.escape pageObject.getTitle()}
     </h1>
   """
-  # don't need a click handler here!!! we already have the correct link constructed...
-  # $header.find('a').on 'click', handleHeaderClick
+  $header.find('a').on 'click', handleHeaderClick
 
 emitTimestamp = ($header, $page, pageObject) ->
   if $page.attr('id').match /_rev/
