@@ -9,6 +9,9 @@ pluginRoutes = {}
 pluginPages = {}
 factories = []
 
+# a list of default wiki pages that the client holds
+defaultPages = []
+
 clientOrigin = ''
 wikiOrigin = ''
 
@@ -17,6 +20,8 @@ datHandler.archive = new DatArchive(window.location.origin)
 datHandler.pluginPages = pluginPages
 datHandler.pluginRoutes = pluginRoutes
 datHandler.factories = factories
+datHandler.defaultPages = defaultPages
+datHandler.clientOrigin = clientOrigin
 
 datHandler.init = init = () ->
 
@@ -62,10 +67,19 @@ datHandler.init = init = () ->
       .catch (err) ->
         console.log "No factory details for #{plugin}"
 
+  buildDefaultPageList = () ->
+    clientArchive = new DatArchive(clientOrigin)
+    try
+      pages = await clientArchive.readdir("/pages", {stat: true})
+    catch error
+      pages = []
+    pages = pages.filter (page) -> page.stat.isFile() and page.name.endsWith('.json')
+    _.each pages, (page) ->
+      defaultPages.push page.name
 
 
 
-  clientOrigin = new URL($('script[src$="/client.js"]').attr('src')).origin
+  clientOrigin = new URL(document.currentScript.src).origin
   wikiOrigin = window.location.origin
 
   console.log "client origin", clientOrigin
@@ -76,6 +90,8 @@ datHandler.init = init = () ->
   await buildPluginPageList()
 
   await buildFactoriesList()
+
+  await buildDefaultPageList()
 
 
 init()

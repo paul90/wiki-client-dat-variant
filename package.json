@@ -1,6 +1,6 @@
 {
   "name": "wiki-client-dat",
-  "version": "18.06.2",
+  "version": "18.07.29",
   "description": "Federated Wiki - dat variant of the Client-side Javascript",
   "keywords": [
     "wiki",

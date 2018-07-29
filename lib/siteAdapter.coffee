@@ -153,7 +153,15 @@ siteAdapter.origin = {
       url: "/#{route}"
       success: (page) -> done null, page
       error: (xhr, type, msg) ->
-        if wiki.pluginPages[route]
+        if wiki.defaultPages.includes(route)
+          pageURL = wiki.clientOrigin + "/pages/" + route
+          $.ajax
+            type: 'GET'
+            dataType: 'json'
+            url: pageURL
+            success: (page) -> done null, page
+            error: (xhr, type, msg) -> done {msg, xhr}, null
+        else if wiki.pluginPages[route]
           pluginPageURL = wiki.pluginPages[route].url + "/pages/" + route
           $.ajax
             type: 'GET'
