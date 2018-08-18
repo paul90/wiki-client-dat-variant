@@ -34,16 +34,27 @@ datHandler.init = init = () ->
       .then (response) ->
         return response.json()
 
+    fetchLocalPlugins = () ->
+      try
+        data = await datHandler.archive.readFile('/plugins.json')
+        parsedData = JSON.parse(data)
+      catch error
+        consolelog "Fetch Local Plugins:", error
+        parsedData = {}
+      return parsedData
+
     defaultPlugins = await fetchDefaultPlugins()
     _.each defaultPlugins, (pluginURL, plugin) ->
       pluginRoutes[plugin] = pluginURL
-    # we will eventually add code here to load overrides to the defaults from the wiki site.
+    # allow wiki site to load/override plugins
+    localPlugins = await fetchLocalPlugins()
+    _.each localPlugins, (pluginURL, plugin) ->
+      pluginRoutes[plugin] = pluginURL
 
 
   # build a list of plugin pages
   buildPluginPageList = () ->
     _.each pluginRoutes, (pluginURL, plugin) ->
-      console.log plugin, pluginURL
       url = new URL(pluginURL)
       datOrigin = url.origin
       pluginPath = url.pathname
