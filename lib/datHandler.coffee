@@ -1,5 +1,7 @@
 # datHandler contains...
 
+$.holdReady true
+
 _ = require 'underscore'
 
 module.exports = datHandler = {}
@@ -39,7 +41,7 @@ datHandler.init = init = () ->
         data = await datHandler.archive.readFile('/plugins.json')
         parsedData = JSON.parse(data)
       catch error
-        consolelog "Fetch Local Plugins:", error
+        console.log "Fetch Local Plugins:", error
         parsedData = {}
       return parsedData
 
@@ -104,5 +106,6 @@ datHandler.init = init = () ->
 
   await buildDefaultPageList()
 
+  $.holdReady false
 
 init()
