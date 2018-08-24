@@ -41,14 +41,7 @@ module.exports = (user) ->
     window.isAuthenticated = true
     window.isOwner = true
     $('.editEnable').toggle()
-    $('.page').each ->
-      $page = $(this)
-      pageObject = lineup.atKey $page.data('key')
-      refresh.rebuildPage pageObject, $page.empty()
-
-
 
   data = await archive.readFile('/wiki.json')
   wikiDetails = JSON.parse(data)
-  console.log "wikiDetails", wikiDetails
   $("#site-owner").html("Site Owned by: #{wikiDetails['author']}")
