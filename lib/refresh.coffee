@@ -188,9 +188,12 @@ emitFooter = ($footer, pageObject) ->
   host = pageObject.getRemoteSite(location.host)
   slug = pageObject.getSlug()
   pageLink = wiki.site(host).getDirectURL(slug) + ".html"
-  if host is window.location.host or pageLink.protocol is "dat:"
+  if host is window.location.host or pageLink.protocol is "dat:" or pageLink.startsWith '//'
     pageLink = "dat://" + host + "/#view/#{slug}"
-    pageLinkText = host.slice(0, 6) + '..' + host.slice(-2)
+    if host.length is 64 and !host.includes('.')
+      pageLinkText = host.slice(0, 6) + '..' + host.slice(-2)
+    else
+      pageLinkText = host
   else
     pageLinkText = host
   $footer.append """
