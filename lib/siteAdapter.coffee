@@ -144,13 +144,21 @@ siteAdapter.local = {
 siteAdapter.origin = {
   flag: -> "/favicon.png"
   getURL: (route) -> "/#{route}"
-  getDirectURL: (route) -> "/#{route}"
+  getDirectURL: (route) ->
+    if window.location.origin is wiki.clientOrigin
+      "/wiki/#{route}"
+    else
+      "/#{route}"
   get: (route, done) ->
     console.log "wiki.origin.get #{route}"
+    if window.location.origin is wiki.clientOrigin
+      originRoute = "wiki/" + route
+    else
+      originRoute = route
     $.ajax
       type: 'GET'
       dataType: 'json'
-      url: "/#{route}"
+      url: "/#{originRoute}"
       success: (page) -> done null, page
       error: (xhr, type, msg) ->
         if wiki.defaultPages.includes(route)

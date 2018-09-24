@@ -22,3 +22,7 @@ client/client.map
 client/client.*.map
 client/test/testclient.js
 client/test/testclient.map
+
+# ignore dat files
+.dat
+dat.json
