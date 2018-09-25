@@ -188,7 +188,7 @@ siteAdapter.origin = {
     .then () ->
       done null
     .catch (error) ->
-      console.log "siteAdapter.origin.put #{route} failed:", reason
+      console.log "siteAdapter.origin.put #{route} failed:", error
       done {error}
   delete: (route, done) ->
     console.log "deleting", route
