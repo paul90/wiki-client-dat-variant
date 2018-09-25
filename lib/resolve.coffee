@@ -55,6 +55,6 @@ resolve.resolveLinks = (string, sanitize=escape) ->
   string = string
     .replace /〖(\d+)〗/g, "〖 $1 〗"
     .replace /\[\[([^\]]+)\]\]/gi, internal
-    .replace /\[((http|https|ftp):.*?) (.*?)\]/gi, external
+    .replace /\[((http|https|ftp|dat):.*?) (.*?)\]/gi, external
   sanitize string
     .replace /〖(\d+)〗/g, unstash
