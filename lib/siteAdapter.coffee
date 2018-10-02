@@ -372,6 +372,8 @@ siteAdapter.site = (site) ->
         ""
 
     get: (route, done) ->
+      if wiki.clientOrigin is "dat://#{site}"
+        route = "wiki/" + route
       if sitePrefix[site]?
         if sitePrefix[site] is ""
           console.log "#{site} is unreachable"

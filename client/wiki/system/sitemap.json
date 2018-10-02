@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "slug": "field-guide-to-the-federation",
+    "title": "Field Guide to the Federation",
+    "date": 1498664660237,
+    "synopsis": "We show you what we find interesting in the federation and suggest how you can make yourself at home here."
+  },
+  {
+    "slug": "frequently-asked-questions",
+    "title": "Frequently Asked Questions",
+    "date": 1536772100631,
+    "synopsis": "As our end user documentation emerges we can expect there to be many questions. We will collect answers here, organize them and then use this to guide improvements."
+  },
+  {
+    "slug": "about-federated-wiki",
+    "title": "About Federated Wiki",
+    "date": 1469224975210,
+    "synopsis": "We remain excited about this platform and have become increasingly confident that it embodies important new ideas. We will explain."
+  },
+  {
+    "slug": "welcome-visitors",
+    "title": "Welcome Visitors",
+    "date": 1537892074778,
+    "synopsis": "Welcome to this [[Federated Wiki]] site. The pages on this particular site describe how to get things done with the dat variant of Federated Wiki."
+  },
+  {
+    "slug": "youre-new-here",
+    "title": "You're New Here",
+    "date": 1537865735964,
+    "synopsis": "There are four steps to making a home here once you have your own site. In other systems this would be like filling out your profile page. Do these steps in any order."
+  },
+  {
+    "slug": "wiki-to-wiki",
+    "title": "Wiki to Wiki",
+    "date": 1536518340101,
+    "synopsis": "Wiki empowers authors with control over their own publication.  Our client-server software imposes server administration upon authors.  We experiment to remove that burden."
+  },
+  {
+    "slug": "federated-wiki",
+    "title": "Federated Wiki",
+    "date": 1536518373540,
+    "synopsis": "Federated Wiki sites share pages circulating within a creative commons. A single-page browser application can read from many sites at once and save changes in that browser. Authors who host their own sites can login there to have their edits shared back to the federation as they edit."
+  }
+]

@@ -4,7 +4,7 @@
     {
       "type": "paragraph",
       "id": "530fa0c6d830da7d",
-      "text": "Federated Wiki sites share pages circulating within a creative commons. A single-page browser application can read from many sites at once and save changes in that browser. Users who host their own sites can login there to have their edits shared back to the federation as they edit."
+      "text": "Federated Wiki sites share pages circulating within a creative commons. A single-page browser application can read from many sites at once and save changes in that browser. Authors who host their own sites can login there to have their edits shared back to the federation as they edit."
     },
     {
       "type": "reference",
@@ -16,7 +16,12 @@
     {
       "type": "paragraph",
       "id": "d72fef48db142972",
-      "text": "We publish federated wiki software as a Node.js package ready to run on a variety of platforms. This is usefully run on a personal laptop or an industrial server in the cloud. Most people get started by joining a community and launching sites and/or servers with their help. The server software supports a multi-tenant \"farm\" option useful for small groups or heavy users. [https://www.npmjs.com/package/wiki npm]"
+      "text": "We publish federated wiki software primarily as a Node.js package ready to run on a variety of platforms. This is usefully run on a personal laptop or an industrial server in the cloud. Most people get started by joining a community and launching sites and/or servers with their help. The server software supports a multi-tenant \"farm\" option useful for small groups or heavy users. [https://www.npmjs.com/package/wiki npm]"
+    },
+    {
+      "type": "paragraph",
+      "id": "1b780aeeec51681a",
+      "text": "We also experiment on a variant of the wiki software which works without a server.  See [[Wiki to Wiki]]"
     },
     {
       "type": "paragraph",
@@ -213,6 +218,52 @@
       ],
       "id": "74269607fa946000",
       "date": 1418524455903
+    },
+    {
+      "type": "edit",
+      "id": "530fa0c6d830da7d",
+      "item": {
+        "type": "paragraph",
+        "id": "530fa0c6d830da7d",
+        "text": "Federated Wiki sites share pages circulating within a creative commons. A single-page browser application can read from many sites at once and save changes in that browser. Authors who host their own sites can login there to have their edits shared back to the federation as they edit."
+      },
+      "date": 1536515954700
+    },
+    {
+      "type": "edit",
+      "id": "d72fef48db142972",
+      "item": {
+        "type": "paragraph",
+        "id": "d72fef48db142972",
+        "text": "We publish federated wiki software primarily as a Node.js package ready to run on a variety of platforms. This is usefully run on a personal laptop or an industrial server in the cloud. Most people get started by joining a community and launching sites and/or servers with their help. The server software supports a multi-tenant \"farm\" option useful for small groups or heavy users. [https://www.npmjs.com/package/wiki npm]"
+      },
+      "date": 1536516666136
+    },
+    {
+      "type": "add",
+      "id": "1b780aeeec51681a",
+      "item": {
+        "type": "paragraph",
+        "id": "1b780aeeec51681a",
+        "text": "We also experiment on a variant of the wiki software which works without a server.  [[Wiki to Wiki]]"
+      },
+      "after": "d72fef48db142972",
+      "date": 1536517259493
+    },
+    {
+      "type": "edit",
+      "id": "1b780aeeec51681a",
+      "item": {
+        "type": "paragraph",
+        "id": "1b780aeeec51681a",
+        "text": "We also experiment on a variant of the wiki software which works without a server.  See [[Wiki to Wiki]]"
+      },
+      "date": 1536518373540
+    },
+    {
+      "type": "fork",
+      "site": "federated-wiki-client.hashbase.io",
+      "date": 1537895498530
     }
   ]
 }
