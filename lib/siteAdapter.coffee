@@ -183,7 +183,7 @@ siteAdapter.origin = {
           done {msg, xhr}, null
   put: (route, data, done) ->
     filePath = "/wiki/#{route}.json"
-    fileData = JSON.stringify(data)
+    fileData = JSON.stringify(data, null, '\t')
     await wiki.archive.writeFile(filePath, fileData)
     .then () ->
       done null

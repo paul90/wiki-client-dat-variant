@@ -46,7 +46,7 @@ buildSitemap = () ->
 sitemapHandler.update = (sitemap) ->
   console.log "updating sitemap", sitemap
   # write sitemap to dat
-  await wiki.archive.writeFile("/wiki/system/sitemap.json", JSON.stringify(sitemap))
+  await wiki.archive.writeFile("/wiki/system/sitemap.json", JSON.stringify(sitemap, null, '\t'))
   .then (err) ->
     if err
       console.log "sitemap update failed:", reason
@@ -76,7 +76,7 @@ init = () ->
     await buildSitemap()
     .then (newsitemap) ->
       originSitemap = newsitemap
-      await wiki.archive.writeFile("/wiki/system/sitemap.json", JSON.stringify(newsitemap))
+      await wiki.archive.writeFile("/wiki/system/sitemap.json", JSON.stringify(newsitemap, null, '\t'))
       .catch (error) ->
         console.log "sitemap create failed:", error
   else
