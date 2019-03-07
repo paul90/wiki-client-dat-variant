@@ -31,8 +31,11 @@ populateSiteInfoFor = (site,neighborInfo)->
         $('body').trigger 'new-neighbor-done', site
       else
         transition site, 'fetch', 'fail'
-        wiki.site(site).refresh () ->
-          # empty function
+        try
+          wiki.site(site).refresh () ->
+            # empty function
+
+
 
   now = Date.now()
   if now > nextAvailableFetch

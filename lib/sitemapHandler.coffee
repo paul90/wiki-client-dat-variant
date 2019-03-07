@@ -54,10 +54,17 @@ sitemapHandler.update = (sitemap) ->
 
 
 init = () ->
+
+  clientOrigin = new URL(document.currentScript.src).origin
+  wikiOrigin = window.location.origin
+
   # fetch sitemap
 
-  fetchSitemap = () ->
-    sitemapUrl = window.location.origin + "/system/sitemap.json"
+  checkSitemap = () ->
+    if clientOrigin is wikiOrigin
+      sitemapUrl = '/wiki/system/sitemap.json'
+    else
+      sitemapUrl = '/system/sitemap.json'
     fetch(sitemapUrl)
     .then (response) ->
       if !response.ok
@@ -66,21 +73,22 @@ init = () ->
     .then (response) ->
       return response.json()
     .catch (error) ->
-      return []
+      # problem with sitemap, lets rebuild it, if we can.
+      info = await wiki.archive.getInfo()
+      if info.isOwner
+        console.log "+++ Rebuilding Missing Sitemap"
+        await buildSitemap()
+        .then (newsitemap) ->
+          await wiki.archive.writeFile("/wiki/system/sitemap.json", JSON.stringify(newsitemap, null, '\t'))
+          .catch (error) ->
+            console.log "---- Error writing recreated sitemap", error
+            return newsitemap
+      else
+        console.log "---- Sitemap is missing, not rebuilt as we are not the owner"
+        return []
 
-  retrievedSitemap = await fetchSitemap()
-  console.log "sitemap fetched", retrievedSitemap
-
-  if _.isEmpty(retrievedSitemap)
-    console.log "sitemap is empty!"
-    await buildSitemap()
-    .then (newsitemap) ->
-      originSitemap = newsitemap
-      await wiki.archive.writeFile("/wiki/system/sitemap.json", JSON.stringify(newsitemap, null, '\t'))
-      .catch (error) ->
-        console.log "sitemap create failed:", error
-  else
-    originSitemap = retrievedSitemap
+  # check wiki has a sitemap, and recreate if it is missing and we are the wiki owner
+  await checkSitemap()
 
 
 init()
