@@ -9,7 +9,6 @@ module.exports = sitemapHandler = {}
 originSitemap = []
 
 sitemapHandler.updatePage = (page) ->
-  console.log "SitemapHandler updatePage"
 
 buildSitemap = () ->
 
@@ -27,8 +26,6 @@ buildSitemap = () ->
       date: editDate(pageJSON.journal)
       synopsis: synopsis(pageJSON)
 
-
-  console.log "rebuilding sitemap"
   try
     pages = await wiki.archive.readdir("/wiki", {stat: true})
   catch error
@@ -44,7 +41,6 @@ buildSitemap = () ->
     return pages
 
 sitemapHandler.update = (sitemap) ->
-  console.log "updating sitemap", sitemap
   # write sitemap to dat
   await wiki.archive.writeFile("/wiki/system/sitemap.json", JSON.stringify(sitemap, null, '\t'))
   .then (err) ->

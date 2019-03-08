@@ -8,6 +8,9 @@
 # the known uses of wiki globals. We notice that most entry
 # points are used. We mark unused entries with ##.
 
+clientVersion = '__VERSION__'
+console.log '+++ Client Version:', clientVersion
+
 wiki = {}
 
 

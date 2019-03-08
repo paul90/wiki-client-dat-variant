@@ -1,6 +1,6 @@
 {
   "name": "wiki-client-dat",
-  "version": "18.10.17",
+  "version": "19.03.08",
   "description": "Federated Wiki - dat variant of the Client-side Javascript",
   "keywords": [
     "wiki",
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@mapbox/sanitize-caja": "^0.1.4",
+    "browserify-versionify": "^1.0.6",
     "coffeeify": "^3.0.1",
     "coffeescript": "^2.3.2",
     "expect.js": "^0.3.1",

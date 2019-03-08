@@ -63,7 +63,7 @@ module.exports = function (grunt) {
         src: ['./client.coffee'],
         dest: 'client/client.max.js',
         options: {
-          transform: ['coffeeify'],
+          transform: ['coffeeify', 'browserify-versionify'],
           browserifyOptions: {
             extensions: ".coffee"
           }
