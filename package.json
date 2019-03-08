@@ -34,23 +34,25 @@
     "test": "grunt mochaTest"
   },
   "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "@mapbox/sanitize-caja": "^0.1.4",
     "browserify-versionify": "^1.0.6",
     "coffeeify": "^3.0.1",
     "coffeescript": "^2.3.2",
     "expect.js": "^0.3.1",
     "grunt": "^1.0.3",
+    "grunt-babel": "^8.0.0",
     "grunt-browserify": "^5.2.0",
-    "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-uglify-es": "^3.3.0",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-uglify": "^4.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-git-authors": "^3.2.0",
     "grunt-mocha-test": "^0.13.2",
-    "grunt-nsp": "^2.3.1",
     "grunt-retire": "^1.0.3",
-    "marked": "^0.3.17",
-    "mocha": "^5.2.0",
-    "sinon": "^4.4.2"
+    "marked": "^0.6.1",
+    "mocha": "^6.0.2",
+    "sinon": "^7.2.7"
   },
   "license": "MIT",
   "repository": {
@@ -59,8 +61,5 @@
   },
   "bugs": {
     "url": "https://github.com/paul90/wiki-client-dat/issues"
-  },
-  "engines": {
-    "node": ">=8.x"
   }
 }
