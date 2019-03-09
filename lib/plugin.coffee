@@ -40,7 +40,7 @@ getScript = plugin.getScript = (url, callback = () ->) ->
 
 plugin.get = plugin.getPlugin = (name, callback) ->
   return callback(window.plugins[name]) if window.plugins[name]
-  console.log "plugin get: ", name
+  # create plugin url using pluginRoutes
   pluginScriptUrl = "#{wiki.pluginRoutes[name]}/client/#{name}.js"
   getScript pluginScriptUrl, () ->
     return callback(window.plugins[name])

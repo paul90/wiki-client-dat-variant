@@ -4,7 +4,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-uglify-es');
   grunt.loadNpmTasks('grunt-git-authors');
   grunt.loadNpmTasks('grunt-retire');
 
@@ -57,7 +57,7 @@ module.exports = function (grunt) {
       // build the client that we will include in the package
       packageClient: {
         src: ['./client.coffee'],
-        dest: 'build/client.js',
+        dest: 'client/client.max.js',
         options: {
           transform: ['coffeeify', 'browserify-versionify'],
           browserifyOptions: {
@@ -76,18 +76,6 @@ module.exports = function (grunt) {
           browserifyOptions: {
             extensions: ".coffee"
           }
-        }
-      }
-    },
-
-    babel: {
-      options: {
-        sourceMap: true,
-        presets: ['@babel/preset-env']
-      },
-      dist: {
-        files: {
-          'client/client.max.js': 'build/client.js'
         }
       }
     },
@@ -115,6 +103,7 @@ module.exports = function (grunt) {
     mochaTest: {
       test: {
         options: {
+          timeout: false,
           reporter: 'spec',
           require: 'coffeescript/register'
         },
@@ -140,7 +129,7 @@ module.exports = function (grunt) {
   });
 
   // build without sourcemaps
-  grunt.registerTask('build', ['clean', 'browserify:packageClient', 'browserify:testClient', 'babel', 'uglify:packageClient']);
+  grunt.registerTask('build', ['clean', 'browserify:packageClient', 'browserify:testClient', 'uglify:packageClient']);
 
   // check for out-of-date libraries and known vulnerabilities
 
