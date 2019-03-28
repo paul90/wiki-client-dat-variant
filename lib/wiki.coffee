@@ -15,6 +15,10 @@ wiki = {}
 
 
 wiki.clientOrigin = new URL(document.currentScript.src).origin
+wiki.wikiOrigin = window.location.origin
+
+console.log "client origin", wiki.clientOrigin
+console.log "wiki origin", wiki.wikiOrigin
 
 #
 datHandler = require './datHandler'

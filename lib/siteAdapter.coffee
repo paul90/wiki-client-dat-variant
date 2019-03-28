@@ -154,15 +154,25 @@ siteAdapter.local = {
 
 siteAdapter.origin = {
   flag: -> "/favicon.png"
-  getURL: (route) -> "/#{route}"
+  getURL: (route) ->
+    clientRawKey = await DatArchive.resolveName(wiki.clientOrigin)
+    wikiRawKey = await DatArchive.resolveName(wiki.wikiOrigin)
+    if wikiRawKey is clientRawKey
+      "/wiki/#{route}"
+    else
+      "/#{route}"
   getDirectURL: (route) ->
-    if window.location.origin is wiki.clientOrigin
+    clientRawKey = await DatArchive.resolveName(wiki.clientOrigin)
+    wikiRawKey = await DatArchive.resolveName(wiki.wikiOrigin)
+    if wikiRawKey is clientRawKey
       "/wiki/#{route}"
     else
       "/#{route}"
   get: (route, done) ->
     console.log "wiki.origin.get #{route}"
-    if window.location.origin is wiki.clientOrigin
+    clientRawKey = await DatArchive.resolveName(wiki.clientOrigin)
+    wikiRawKey = await DatArchive.resolveName(wiki.wikiOrigin)
+    if wikiRawKey is clientRawKey
       originRoute = "wiki/" + route
     else
       originRoute = route

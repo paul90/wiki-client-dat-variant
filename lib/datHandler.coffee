@@ -14,8 +14,10 @@ factories = []
 # a list of default wiki pages that the client holds
 defaultPages = []
 
+
 clientOrigin = ''
 wikiOrigin = ''
+
 
 datHandler.archive = new DatArchive(window.location.origin)
 
@@ -90,13 +92,9 @@ datHandler.init = init = () ->
     _.each pages, (page) ->
       defaultPages.push page.name
 
-
-
   clientOrigin = new URL(document.currentScript.src).origin
   wikiOrigin = window.location.origin
 
-  console.log "client origin", clientOrigin
-  console.log "wiki origin", wikiOrigin
 
   await loadPluginData()
 

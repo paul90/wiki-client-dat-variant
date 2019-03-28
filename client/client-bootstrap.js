@@ -36,7 +36,7 @@ if (!window.DatArchive) {
   $('head').append(render(`
     <style type='text/css'>
       body {
-        background-image: url("/system/theme/linen2.jpg");
+        background-image: url("/images/linen2.jpg");
         background-size: repeat;
         font-family: "Helvetica Neue", Verdana, helvetica, Arial, Sans;
         padding: 0px;
@@ -78,7 +78,7 @@ if (!window.DatArchive) {
 
   // add list of pages
 
-  fetch('/system/sitemap.json')
+  fetch('/wiki/system/sitemap.json')
     .then(function(response) {
       return response.json()
     })

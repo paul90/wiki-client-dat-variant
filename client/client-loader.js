@@ -7,13 +7,17 @@ console.log('+++ Client Loader Version: ', myVersion)
 var clientOrigin = new URL(document.currentScript.src).origin
 console.log('+++ loading client from: ', clientOrigin)
 
-function setupClient () {
+async function setupClient () {
   var clientOrigin = new URL(document.currentScript.src).origin
   var wikiOrigin = window.location.origin
+
+  var clientRawKey = await DatArchive.resolveName(clientOrigin)
+  var wikiRawKey = await DatArchive.resolveName(wikiOrigin)
+
   console.log("client origin", clientOrigin)
   console.log("wiki origin", wikiOrigin)
 
-  if (clientOrigin === wikiOrigin) {
+  if (clientRawKey === wikiRawKey) {
     clientOrigin = ''
   }
 
