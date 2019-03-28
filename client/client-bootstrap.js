@@ -9,7 +9,7 @@
 
 'use strict'
 
-var myVersion = "19.03.08"
+var myVersion = "19.03.28 (client wiki)"
 console.log('+++ Client Bootstrap Version: ', myVersion)
 
 if (!window.DatArchive) {

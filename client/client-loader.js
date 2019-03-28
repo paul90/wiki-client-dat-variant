@@ -1,7 +1,7 @@
 // this loads the wiki client
 'use strict'
 
-var myVersion = "19.03.08"
+var myVersion = "19.03.28"
 console.log('+++ Client Loader Version: ', myVersion)
 
 var clientOrigin = new URL(document.currentScript.src).origin
