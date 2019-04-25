@@ -71,7 +71,7 @@ recursiveGet = ({pageInformation, whenGotten, whenNotGotten, localContext}) ->
           The page handler has run into problems with this request.
           <pre class=error>#{JSON.stringify pageInformation}</pre>
           The requested url.
-          <pre class=error>#{url}</pre>
+          <pre class=error>#{slug}</pre>
           The server reported status.
           <pre class=error>#{err.xhr?.status}</pre>
           The error message.
@@ -79,7 +79,6 @@ recursiveGet = ({pageInformation, whenGotten, whenNotGotten, localContext}) ->
           These problems are rarely solved by reporting issues.
           There could be additional information reported in the browser's console.log.
           More information might be accessible by fetching the page outside of wiki.
-          <a href="#{url}" target="_blank">try-now</a>
         """
         trouble = newPage {title: "Trouble: Can't Get Page"}, null
         trouble.addItem {type:'html', text}
