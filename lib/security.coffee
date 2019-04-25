@@ -26,9 +26,9 @@ module.exports = (user) ->
 
     for hashPage, idx in hashPages
       if hashSites[idx] is "view"
-        mainContent += "<div id='#{hashPage}' class='page'></div> "
+        mainContent += "<div id='#{hashPage}' class='page' tabindex='-1'></div> "
       else
-        mainContent += "<div id='#{hashPage}' data-site='#{hashSites[idx]}' class='page'></div> "
+        mainContent += "<div id='#{hashPage}' data-site='#{hashSites[idx]}' class='page' tabindex='-1'></div> "
 
     $("section.main").html(mainContent)
 

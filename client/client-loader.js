@@ -45,7 +45,7 @@ async function setupClient () {
       </head>
       <body>
         <section class='main'>
-          <div id="welcome-visitors" class="page active"></div>
+          <div id="welcome-visitors" class="page active" tabindex="-1"></div>
         </section>
         <footer>
           <div id='site-owner' class='footer-item'>
