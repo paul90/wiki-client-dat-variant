@@ -1,6 +1,5 @@
 module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-clean');

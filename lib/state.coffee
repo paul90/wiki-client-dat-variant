@@ -39,6 +39,10 @@ state.setUrl = ->
     unless url is $(location).attr('pathname') + $(location).attr('hash')
       history.pushState(null, null, url)
 
+state.debugStates = () ->
+  console.log 'a .page keys ', ($(each).data('key') for each in $('.page'))
+  console.log 'a lineup keys', lineup.debugKeys()
+
 state.show = (e) ->
   oldPages = state.pagesInDom()
   newPages = state.urlPages()
@@ -60,8 +64,7 @@ state.show = (e) ->
     console.log 'push', idx, name
     link.showPage(name, newLocs[idx])
 
-  console.log 'a .page keys ', ($(each).data('key') for each in $('.page'))
-  console.log 'a lineup keys', lineup.debugKeys()
+  state.debugStates()
 
   active.set($('.page').last())
   document.title = lineup.bestTitle()
