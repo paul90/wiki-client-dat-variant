@@ -26,6 +26,7 @@ wiki.archive = datHandler.archive
 wiki.pluginRoutes = datHandler.pluginRoutes
 wiki.pluginPages = datHandler.pluginPages
 wiki.factories = datHandler.factories
+window.catalog = wiki.factories
 wiki.defaultPages = datHandler.defaultPages
 
 # known use: (eventually all server directed xhr and some tags)

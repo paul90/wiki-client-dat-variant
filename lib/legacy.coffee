@@ -17,8 +17,9 @@ license = require './license'
 asSlug = require('./page').asSlug
 newPage = require('./page').newPage
 
-wiki.origin.get 'system/factories.json', (error, data) ->
-  window.catalog = data
+# performed in datHandler, as factories.json does not exist in dat variant.  
+#wiki.origin.get 'system/factories.json', (error, data) ->
+#  window.catalog = data
 
 $ ->
   dialog.emit()
