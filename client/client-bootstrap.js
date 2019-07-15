@@ -13,6 +13,9 @@ var myVersion = "19.03.28 (client wiki)"
 console.log('+++ Client Bootstrap Version: ', myVersion)
 
 if (!window.DatArchive) {
+  // lets just check we are not in a frame first...
+  var inFrame = (window.self !== window.top)
+
   // some helper from pfrazee's ui kit - https://github.com/pfrazee/pauls-ui-kit
   function $ (el, sel = undefined) {
     if (typeof sel === 'string') {
@@ -75,6 +78,13 @@ if (!window.DatArchive) {
         <p>For more information about Federated Wiki a good place to start is <a href="http://fed.wiki.org/view/welcome-visitors/view/about-federated-wiki">About Federated Wiki</a>.</p>
       </main>
     </article>`))
+
+  if (inFrame) {
+    $('main').append(render(`
+      <p>It looks as if you are seeing Federated Wiki in a browser frame. The DatArchive API
+      that we rely on is not currently available in this environment, so you are seeing a cover page.</p>
+      <p>Press <a href='${window.location.href}' target='_blank'>HERE</a> to open this Federated Wiki in a new tab.</p>`))
+  }
 
   // add list of pages
 
