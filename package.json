@@ -26,7 +26,7 @@
     }
   ],
   "dependencies": {
-    "async": "^2.6.1",
+    "async": "^2.6.3",
     "localforage": "^1.7.2",
     "underscore": "^1.9.1"
   },
@@ -34,8 +34,8 @@
     "test": "grunt mochaTest"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@mapbox/sanitize-caja": "^0.1.4",
     "browserify-versionify": "^1.0.6",
     "coffeeify": "^3.0.1",
@@ -50,9 +50,9 @@
     "grunt-git-authors": "^3.2.0",
     "grunt-mocha-test": "^0.13.2",
     "grunt-retire": "^1.0.3",
-    "marked": "^0.6.1",
-    "mocha": "^6.0.2",
-    "sinon": "^7.2.7"
+    "marked": "^0.7.0",
+    "mocha": "^6.2.0",
+    "sinon": "^7.4.1"
   },
   "license": "MIT",
   "repository": {
