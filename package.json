@@ -34,8 +34,8 @@
     "test": "grunt mochaTest"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
     "@mapbox/sanitize-caja": "^0.1.4",
     "browserify-versionify": "^1.0.6",
     "coffeeify": "^3.0.1",
