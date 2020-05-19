@@ -1,7 +1,7 @@
 // this loads the wiki client
 'use strict'
 
-var myVersion = "19.03.28"
+var myVersion = "20.05.19"
 console.log('+++ Client Loader Version: ', myVersion)
 
 var clientOrigin = new URL(document.currentScript.src).origin
@@ -11,8 +11,8 @@ async function setupClient () {
   var clientOrigin = new URL(document.currentScript.src).origin
   var wikiOrigin = window.location.origin
 
-  var clientRawKey = await DatArchive.resolveName(clientOrigin)
-  var wikiRawKey = await DatArchive.resolveName(wikiOrigin)
+  var clientRawKey = await beaker.hyperdrive.getInfo(clientOrigin).then(x => { x.key })
+  var wikiRawKey = await beaker.hyperdrive.getInfo(wikiOrigin).then(x => { x.key })
 
   console.log("client origin", clientOrigin)
   console.log("wiki origin", wikiOrigin)

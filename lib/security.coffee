@@ -33,11 +33,11 @@ module.exports = (user) ->
     $("section.main").html(mainContent)
 
   wikiOrigin = window.location.origin
-  archive = new DatArchive(wikiOrigin)
+  archive = beaker.hyperdrive.drive(wikiOrigin)
 
   archiveInfo = await archive.getInfo()
 
-  if archiveInfo.isOwner
+  if archiveInfo.writable
     window.isAuthenticated = true
     window.isOwner = true
     $('.editEnable').toggle()

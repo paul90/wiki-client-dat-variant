@@ -1,8 +1,7 @@
 {
   "author": "Wiki Client",
-  "version": "19.03.28",
+  "version": "20.05.19",
   "client": {
-    "name": "federated-wiki-client.localtest.me",
-    "key": "f6a92fc3db8138dd2e4cb75525d79e90df46f119b211fc59d605e75b5b867856"
+    "key": "3d029c16ff421f645a1d5ebca19f9091a836efa0c0dda970c4de50ee2ad352f7"
   }
 }

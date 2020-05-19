@@ -27,7 +27,7 @@ buildSitemap = () ->
       synopsis: synopsis(pageJSON)
 
   try
-    pages = await wiki.archive.readdir("/wiki", {stat: true})
+    pages = await wiki.archive.readdir("/wiki", {includeStats: true})
   catch error
     pages = []
 

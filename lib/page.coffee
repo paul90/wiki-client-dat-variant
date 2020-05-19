@@ -159,12 +159,12 @@ newPage = (json, site) ->
       "view/welcome-visitors/view/#{slug}"
     if isRemote()
       link = wiki.site(site).getDirectURL(path)
-      if link.protocol is "dat:"
-        "dat://#{site}/##{path}"
+      if link.protocol is "hyper:"
+        "hyper://#{site}/##{path}"
       else
         link
     else
-      if window.location.protocol is "dat:"
+      if window.location.protocol is "hyper:"
         "/##{path}"
       else
         "/#{path}"

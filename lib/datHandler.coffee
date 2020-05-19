@@ -19,7 +19,7 @@ clientOrigin = ''
 wikiOrigin = ''
 
 
-datHandler.archive = new DatArchive(window.location.origin)
+datHandler.archive = beaker.hyperdrive.drive(window.location.origin)
 
 datHandler.pluginPages = pluginPages
 datHandler.pluginRoutes = pluginRoutes
@@ -62,7 +62,7 @@ datHandler.init = init = () ->
       url = new URL(pluginURL)
       datOrigin = url.origin
       pluginPath = url.pathname
-      pluginArchive = new DatArchive(datOrigin)
+      pluginArchive = beaker.hyperdrive.drive(datOrigin)
       try
         pages = await pluginArchive.readdir(pluginPath + "/pages")
       catch error
@@ -83,9 +83,9 @@ datHandler.init = init = () ->
         console.log "No factory details for #{plugin}"
 
   buildDefaultPageList = () ->
-    clientArchive = new DatArchive(clientOrigin)
+    clientArchive = beaker.hyperdrive.drive(clientOrigin)
     try
-      pages = await clientArchive.readdir("/pages", {stat: true})
+      pages = await clientArchive.readdir("/pages", {includeStats: true})
     catch error
       pages = []
     pages = pages.filter (page) -> page.stat.isFile() and page.name.endsWith('.json')

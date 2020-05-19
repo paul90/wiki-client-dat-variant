@@ -78,7 +78,7 @@ findAdapterQ = queue( (task, done) ->
     done "//#{site}"
   ), ->
     switch location.protocol
-      when 'dat:'
+      when 'hyper:'
         testURL = "https://#{site}/favicon.png"
         testWikiSite testURL, (->
           sitePrefix[site] = "https://#{site}"
@@ -161,15 +161,15 @@ siteAdapter.local = {
 siteAdapter.origin = {
   flag: -> "/favicon.png"
   getURL: (route) ->
-    clientRawKey = await DatArchive.resolveName(wiki.clientOrigin)
-    wikiRawKey = await DatArchive.resolveName(wiki.wikiOrigin)
+    clientRawKey = await beaker.hyperdrive.getInfo(wiki.clientOrigin).then( (x) -> x.key)
+    wikiRawKey = await beaker.hyperdrive.getInfo(wiki.wikiOrigin).then( (x) -> x.key)
     if wikiRawKey is clientRawKey
       "/wiki/#{route}"
     else
       "/#{route}"
   getDirectURL: (route) ->
-    clientRawKey = await DatArchive.resolveName(wiki.clientOrigin)
-    wikiRawKey = await DatArchive.resolveName(wiki.wikiOrigin)
+    clientRawKey = await beaker.hyperdrive.getInfo(wiki.clientOrigin).then( (x) -> x.key)
+    wikiRawKey = await beaker.hyperdrive.getInfo(wiki.wikiOrigin).then( (x) -> x.key)
     if wikiRawKey is clientRawKey
       "/wiki/#{route}"
     else
@@ -177,8 +177,8 @@ siteAdapter.origin = {
   get: (route, callback) ->
     done = (err, value) -> if (callback) then callback(err, value)
     console.log "wiki.origin.get #{route}"
-    clientRawKey = await DatArchive.resolveName(wiki.clientOrigin)
-    wikiRawKey = await DatArchive.resolveName(wiki.wikiOrigin)
+    clientRawKey = await beaker.hyperdrive.getInfo(wiki.clientOrigin).then( (x) -> x.key)
+    wikiRawKey = await beaker.hyperdrive.getInfo(wiki.wikiOrigin).then( (x) -> x.key)
     if wikiRawKey is clientRawKey
       originRoute = "wiki/" + route
     else
@@ -411,7 +411,7 @@ siteAdapter.site = (site) ->
           error: (xhr, type, msg) ->
             done {msg, xhr}, null
 
-      if wiki.clientOrigin is "dat://#{site}"
+      if wiki.clientOrigin is "hyper://#{site}"
         route = "wiki/" + route
 
       if sitePrefix[site]?
