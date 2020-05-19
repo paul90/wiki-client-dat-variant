@@ -26,3 +26,6 @@ client/test/testclient.map
 # ignore dat files
 .dat
 dat.json
+
+# ignore hyperdrive files
+.hyperdrive-import-key
