@@ -14,12 +14,12 @@ factories = []
 # a list of default wiki pages that the client holds
 defaultPages = []
 
-
+datHandler.usingFrontend = usingFrontend = new URL(document.currentScript.src).href.includes('.ui')
 clientOrigin = ''
 wikiOrigin = ''
 
 
-datHandler.archive = beaker.hyperdrive.drive(window.location.origin)
+datHandler.archive = wikiArchive = beaker.hyperdrive.drive(window.location.origin)
 
 datHandler.pluginPages = pluginPages
 datHandler.pluginRoutes = pluginRoutes
@@ -83,16 +83,26 @@ datHandler.init = init = () ->
         console.log "No factory details for #{plugin}"
 
   buildDefaultPageList = () ->
-    clientArchive = beaker.hyperdrive.drive(clientOrigin)
-    try
-      pages = await clientArchive.readdir("/pages", {includeStats: true})
-    catch error
-      pages = []
+    if usingFrontend
+      try
+        pages = await wikiArchive.readdir("/.ui/pages", {includeStats: true})
+      catch error
+        pages = []
+    else
+      clientArchive = beaker.hyperdrive.drive(clientOrigin)
+      try
+        pages = await clientArchive.readdir("/pages", {includeStats: true})
+      catch error
+        pages = []
     pages = pages.filter (page) -> page.stat.isFile() and page.name.endsWith('.json')
     _.each pages, (page) ->
       defaultPages.push page.name
 
-  clientOrigin = new URL(document.currentScript.src).origin
+  # are we using a mounted frontend?
+  if usingFrontend
+    clientOrigin = '/.ui'
+  else
+    clientOrigin = new URL(document.currentScript.src).origin
   wikiOrigin = window.location.origin
 
 

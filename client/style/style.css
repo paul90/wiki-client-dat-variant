@@ -15,7 +15,7 @@ a img {
   border: 0; }
 
 a.external::after {
-  content: url("/images/external-link-ltr-icon.png");
+  content: url("../images/external-link-ltr-icon.png");
   padding-left: 3px;
 }
 
@@ -25,7 +25,7 @@ body {
   right: 0;
   bottom: 0;
   position: absolute;
-  background: #eeeeee url("/images/linen4.jpg");
+  background: #eeeeee url("../images/linen4.jpg");
   overflow: hidden;
   padding: 0;
   margin: 0;
@@ -50,7 +50,7 @@ body {
 footer {
   border-top: 1px solid #3d3c43;
   box-shadow: inset 0px 0px 7px rgba(0, 0, 0, 0.8);
-  background: #eeeeee url("/images/noise.png");
+  background: #eeeeee url("../images/noise.png");
   position: fixed;
   left: 0;
   right: 0;

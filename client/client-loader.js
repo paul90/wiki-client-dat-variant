@@ -8,17 +8,25 @@ var clientOrigin = new URL(document.currentScript.src).origin
 console.log('+++ loading client from: ', clientOrigin)
 
 async function setupClient () {
-  var clientOrigin = new URL(document.currentScript.src).origin
-  var wikiOrigin = window.location.origin
+  var clientOrigin = undefined
+  // are we using a mounted frontend?
+  var usingFrontend = new URL(document.currentScript.src).href.includes('.ui')
 
-  var clientRawKey = await beaker.hyperdrive.getInfo(clientOrigin).then(x => { x.key })
-  var wikiRawKey = await beaker.hyperdrive.getInfo(wikiOrigin).then(x => { x.key })
+  if (usingFrontend) {
+    clientOrigin = '/.ui'
+  } else {
+    clientOrigin = new URL(document.currentScript.src).origin
+    var wikiOrigin = window.location.origin
 
-  console.log("client origin", clientOrigin)
-  console.log("wiki origin", wikiOrigin)
+    var clientRawKey = await beaker.hyperdrive.getInfo(clientOrigin).then(x => { x.key })
+    var wikiRawKey = await beaker.hyperdrive.getInfo(wikiOrigin).then(x => { x.key })
 
-  if (clientRawKey === wikiRawKey) {
-    clientOrigin = ''
+    console.log("client origin", clientOrigin)
+    console.log("wiki origin", wikiOrigin)
+
+    if (clientRawKey === wikiRawKey) {
+      clientOrigin = ''
+    }
   }
 
   var clientHTML = `

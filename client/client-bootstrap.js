@@ -12,8 +12,8 @@
 var myVersion = "20.05.19 (client wiki)"
 console.log('+++ Client Bootstrap Version: ', myVersion)
 
-// do we have the beaker.hyperdrive API?
-if (!(typeof beaker !== 'undefined' && beaker !== null ? beaker.hyperdrive : void 0)) {
+// do we have the beaker API?
+if (!('beaker' in window)) {
   // lets just check we are not in a frame first...
   var inFrame = (window.self !== window.top)
 
@@ -123,15 +123,23 @@ if (!(typeof beaker !== 'undefined' && beaker !== null ? beaker.hyperdrive : voi
   async function launchWikiClient () {
     var wikiOrigin = window.location.origin
     var wikiArchive = beaker.hyperdrive.drive(wikiOrigin)
-    // read wiki.json
-    var data = await wikiArchive.readFile('/wiki.json')
-    var wikiConfig = JSON.parse(data)
-    // the wiki.json is expected to hold both the key to find the client.
-    var rawClientURL = wikiConfig.client.key
+    var wikiClientLoaderURL = undefined
+
+    // are we using a mounted frontend?
+    var usingFrontend = new URL(document.currentScript.src).href.includes('.ui')
+
+    if (usingFrontend) {
+      wikiClientLoaderURL = '/.ui/client-loader.js'
+    } else {
+      // read wiki.json
+      var data = await wikiArchive.readFile('/wiki.json')
+      var wikiConfig = JSON.parse(data)
+      // the wiki.json is expected to hold both the key to find the client.
+      var rawClientURL = wikiConfig.client.key
+      wikiClientLoaderURL = new URL('/client-loader.js', 'hyper://'+rawClientURL)
+    }
 
     // import the client loader module
-    var wikiClientLoaderURL = new URL('/client-loader.js', 'hyper://'+rawClientURL)
-
     var clientLoader = document.createElement('script')
     clientLoader.src = wikiClientLoaderURL
     clientLoader.type = 'text/javascript'

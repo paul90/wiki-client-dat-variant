@@ -190,7 +190,10 @@ siteAdapter.origin = {
       success: (page) -> done null, page
       error: (xhr, type, msg) ->
         if wiki.defaultPages.includes(route)
-          pageURL = wiki.clientOrigin + "/pages/" + route
+          if wiki.usingFrontend
+            pageURL = '/.ui/pages/' + route
+          else
+            pageURL = wiki.clientOrigin + "/pages/" + route
           $.ajax
             type: 'GET'
             dataType: 'json'

@@ -28,6 +28,7 @@ wiki.pluginPages = datHandler.pluginPages
 wiki.factories = datHandler.factories
 window.catalog = wiki.factories
 wiki.defaultPages = datHandler.defaultPages
+wiki.usingFrontend = datHandler.usingFrontend
 
 # known use: (eventually all server directed xhr and some tags)
 
