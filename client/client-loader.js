@@ -18,11 +18,13 @@ async function setupClient () {
     clientOrigin = new URL(document.currentScript.src).origin
     var wikiOrigin = window.location.origin
 
-    var clientRawKey = await beaker.hyperdrive.getInfo(clientOrigin).then(x => { x.key })
-    var wikiRawKey = await beaker.hyperdrive.getInfo(wikiOrigin).then(x => { x.key })
+    var clientRawKey = await beaker.hyperdrive.getInfo(clientOrigin).then(x => { return x.key })
+    var wikiRawKey = await beaker.hyperdrive.getInfo(wikiOrigin).then(x => { return x.key })
 
-    console.log("client origin", clientOrigin)
+/*     console.log("client origin", clientOrigin)
     console.log("wiki origin", wikiOrigin)
+    console.log("client Key RAW", clientRawKey)
+    console.log("wiki Key RAW", wikiRawKey) */
 
     if (clientRawKey === wikiRawKey) {
       clientOrigin = ''
