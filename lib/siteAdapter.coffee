@@ -161,28 +161,13 @@ siteAdapter.local = {
 siteAdapter.origin = {
   flag: -> "/favicon.png"
   getURL: (route) ->
-    clientRawKey = await beaker.hyperdrive.getInfo(wiki.clientOrigin).then( (x) -> x.key)
-    wikiRawKey = await beaker.hyperdrive.getInfo(wiki.wikiOrigin).then( (x) -> x.key)
-    if wikiRawKey is clientRawKey
-      "/wiki/#{route}"
-    else
-      "/#{route}"
+    "/wiki/#{route}"
   getDirectURL: (route) ->
-    clientRawKey = await beaker.hyperdrive.getInfo(wiki.clientOrigin).then( (x) -> x.key)
-    wikiRawKey = await beaker.hyperdrive.getInfo(wiki.wikiOrigin).then( (x) -> x.key)
-    if wikiRawKey is clientRawKey
-      "/wiki/#{route}"
-    else
-      "/#{route}"
+    "/wiki/#{route}"
   get: (route, callback) ->
     done = (err, value) -> if (callback) then callback(err, value)
     console.log "wiki.origin.get #{route}"
-    clientRawKey = await beaker.hyperdrive.getInfo(wiki.clientOrigin).then( (x) -> x.key)
-    wikiRawKey = await beaker.hyperdrive.getInfo(wiki.wikiOrigin).then( (x) -> x.key)
-    if wikiRawKey is clientRawKey
-      originRoute = "wiki/" + route
-    else
-      originRoute = route
+    originRoute = "wiki/" + route
     $.ajax
       type: 'GET'
       dataType: 'json'

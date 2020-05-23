@@ -57,10 +57,7 @@ init = () ->
   # fetch sitemap
 
   checkSitemap = () ->
-    if clientOrigin is wikiOrigin
-      sitemapUrl = '/wiki/system/sitemap.json'
-    else
-      sitemapUrl = '/system/sitemap.json'
+    sitemapUrl = '/wiki/system/sitemap.json'
     fetch(sitemapUrl)
     .then (response) ->
       if !response.ok
