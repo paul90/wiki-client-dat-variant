@@ -376,6 +376,8 @@ siteAdapter.site = (site) ->
       done = (err, value) -> if (callback) then callback(err, value)
 
       getContent = (route, done) ->
+        if window.location.protocol is "hyper:" and sitePrefix[site].startsWith '//'
+          route = "wiki/" + route
         url = "#{sitePrefix[site]}/#{route}"
         useCredentials = credentialsNeeded[site] || false
 
@@ -398,9 +400,6 @@ siteAdapter.site = (site) ->
               done null, data
           error: (xhr, type, msg) ->
             done {msg, xhr}, null
-
-      if wiki.clientOrigin is "hyper://#{site}"
-        route = "wiki/" + route
 
       if sitePrefix[site]?
         if sitePrefix[site] is ""
