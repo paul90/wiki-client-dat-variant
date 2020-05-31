@@ -68,7 +68,7 @@ init = () ->
     .catch (error) ->
       # problem with sitemap, lets rebuild it, if we can.
       info = await wiki.archive.getInfo()
-      if info.isOwner
+      if info.writable
         console.log "+++ Rebuilding Missing Sitemap"
         await buildSitemap()
         .then (newsitemap) ->
