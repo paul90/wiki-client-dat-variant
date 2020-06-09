@@ -48,12 +48,17 @@ datHandler.init = init = () ->
       return parsedData
 
     defaultPlugins = await fetchDefaultPlugins()
+    console.log '**** clientOrigin', clientOrigin
     _.each defaultPlugins, (pluginURL, plugin) ->
-      pluginRoutes[plugin] = pluginURL
+      # the default plugins are in the client's plugin directory,
+      # the plugin URL from the clients `plugin.json` is relative,
+      # so we prefix the pluginURL with the client origin.
+      pluginRoutes[plugin] = clientOrigin + pluginURL
     # allow wiki site to load/override plugins
-    localPlugins = await fetchLocalPlugins()
-    _.each localPlugins, (pluginURL, plugin) ->
-      pluginRoutes[plugin] = pluginURL
+    if !clientOrigin.startsWith wikiOrigin
+      localPlugins = await fetchLocalPlugins()
+      _.each localPlugins, (pluginURL, plugin) ->
+        pluginRoutes[plugin] = pluginURL
 
 
   # build a list of plugin pages
@@ -62,7 +67,10 @@ datHandler.init = init = () ->
       url = new URL(pluginURL)
       datOrigin = url.origin
       pluginPath = url.pathname
-      pluginArchive = beaker.hyperdrive.drive(datOrigin)
+      if datOrigin is wikiOrigin
+        pluginArchive = wikiArchive
+      else
+        pluginArchive = beaker.hyperdrive.drive(datOrigin)
       try
         pages = await pluginArchive.readdir(pluginPath + "/pages")
       catch error
@@ -104,6 +112,9 @@ datHandler.init = init = () ->
   else
     clientOrigin = new URL(document.currentScript.src).origin
   wikiOrigin = window.location.origin
+  # 
+  if clientOrigin.startsWith '/'
+    clientOrigin = wikiOrigin + clientOrigin
 
 
   await loadPluginData()

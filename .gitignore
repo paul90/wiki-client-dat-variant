@@ -29,3 +29,6 @@ dat.json
 
 # ignore hyperdrive files
 .hyperdrive-import-key
+
+# ignore plugins
+client/plugins/
