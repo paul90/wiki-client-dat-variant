@@ -3,7 +3,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-uglify-es');
   grunt.loadNpmTasks('grunt-git-authors');
   grunt.loadNpmTasks('grunt-retire');
 
@@ -56,7 +55,7 @@ module.exports = function (grunt) {
       // build the client that we will include in the package
       packageClient: {
         src: ['./client.coffee'],
-        dest: 'client/client.max.js',
+        dest: 'client/client.js',
         options: {
           transform: ['coffeeify', 'browserify-versionify'],
           browserifyOptions: {
@@ -75,26 +74,6 @@ module.exports = function (grunt) {
           browserifyOptions: {
             extensions: ".coffee"
           }
-        }
-      }
-    },
-
-    uglify: {
-      packageClient: {
-        // uglify the client version for including in the NPM package,
-        //   create a map so at least if needed we can get back to the generated javascript
-        //   uglified version is 'client.js', so we don't need changes elsewhere.
-        options: {
-          sourceMap: true,
-          sourceMapRoot: "/",
-          sourceMapName: 'client/client.map',
-          banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-                  '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-                  ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author.name %> and other contributors;\n' +
-                  ' * Released under the <%= pkg.license %> license */',
-        },
-        files: {
-          'client/client.js': ['client/client.max.js']
         }
       }
     },
@@ -128,7 +107,7 @@ module.exports = function (grunt) {
   });
 
   // build without sourcemaps
-  grunt.registerTask('build', ['clean', 'browserify:packageClient', 'browserify:testClient', 'uglify:packageClient']);
+  grunt.registerTask('build', ['clean', 'browserify:packageClient', 'browserify:testClient']);
 
   // check for out-of-date libraries and known vulnerabilities
 
