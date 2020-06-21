@@ -55,7 +55,7 @@ datHandler.init = init = () ->
       # so we prefix the pluginURL with the client origin.
       pluginRoutes[plugin] = clientOrigin + pluginURL
     # allow wiki site to load/override plugins
-    if !clientOrigin.startsWith wikiOrigin
+    if usingFrontend or !clientOrigin.startsWith wikiOrigin
       localPlugins = await fetchLocalPlugins()
       _.each localPlugins, (pluginURL, plugin) ->
         pluginRoutes[plugin] = pluginURL
