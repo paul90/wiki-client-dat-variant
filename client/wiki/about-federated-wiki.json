@@ -1,1 +1,322 @@
-{"title":"About Federated Wiki","story":[{"type":"paragraph","id":"92d3cd023c11efd2","text":"We remain excited about this platform and have become increasingly confident that it embodies important new ideas. We will explain."},{"type":"paragraph","id":"3a6b0f4f179e9372","text":"In public we say federated wiki to distinguish our work from other wiki implementations. Here when we say wiki we mean this wiki, federated wiki."},{"type":"paragraph","id":"8769d1d11dab3003","text":"We write in English on laptop computers. We aspire to be in all languages on all platforms but have always had something more exciting to do first. Forgive us."},{"type":"markdown","id":"54dd46484881afd2","text":"# Basics"},{"type":"paragraph","id":"0770e8a2b8b33024","text":"Click links to open new pages. Use the browser's back button to go back."},{"type":"paragraph","id":"02bb08d746443229","text":"Use arrow keys to scroll left and right between pages. The first page, Welcome Visitors, is a good place to start."},{"type":"markdown","id":"ffa05e309dbb0482","text":"# Ideas"},{"type":"paragraph","id":"ab121c266eb7925b","text":"We started with a few simple ideas and have remained committed to showing them to be sound."},{"type":"paragraph","id":"36d2d6cadd149b5b","text":"[[Mixed Content]] on pages sufficient to get work done."},{"type":"paragraph","id":"0dd8924cbf5bef3a","text":"[[Profligate Copying]] as a foundation for creativity."},{"type":"markdown","id":"4636da41130d8661","text":"# Discoveries"},{"type":"paragraph","id":"2996e3a402699dae","text":"We find surprise in the mechanisms that have emerged from our daily use of a system still in active development."},{"type":"paragraph","id":"2a973e632e768188","text":"[[Workflows]] composed from primitive actions replace interfaces engineered for purpose."},{"type":"paragraph","id":"04f1407f380260c6","text":"[[Structures]] aggregate through transformations applied by pages chosen for effect."},{"type":"paragraph","id":"5c7e13b743ae81e8","text":"[[Neighborhoods]] called up for the activity at hand outperform static structures no matter how well intentioned."}],"journal":[{"type":"create","item":{"title":"About Federated Wiki","story":[]},"date":1469219743873},{"item":{"type":"factory","id":"92d3cd023c11efd2"},"id":"92d3cd023c11efd2","type":"add","date":1469219760938},{"type":"edit","id":"92d3cd023c11efd2","item":{"type":"paragraph","id":"92d3cd023c11efd2","text":"We remain excited about this platform and have become increasingly confident that it embodies important new ideas. We will explain."},"date":1469220167465},{"type":"add","id":"3a6b0f4f179e9372","item":{"type":"paragraph","id":"3a6b0f4f179e9372","text":"In public we say federated wiki to distinguish our work from other wiki implementations. Here when we say wiki we mean this wiki, federated wiki."},"after":"92d3cd023c11efd2","date":1469220239998},{"type":"add","id":"8769d1d11dab3003","item":{"type":"paragraph","id":"8769d1d11dab3003","text":"We write in English on laptop computers. We aspire to be in all languages on all platforms but have always had something more exciting to do first. Forgive us."},"after":"3a6b0f4f179e9372","date":1469220407442},{"type":"add","id":"54dd46484881afd2","item":{"type":"paragraph","id":"54dd46484881afd2","text":"# Basics"},"after":"8769d1d11dab3003","date":1469220512877},{"type":"add","id":"0770e8a2b8b33024","item":{"type":"paragraph","id":"0770e8a2b8b33024","text":"Click links to open new pages. Use the browser's back button to go back."},"after":"54dd46484881afd2","date":1469220555434},{"type":"add","id":"02bb08d746443229","item":{"type":"paragraph","id":"02bb08d746443229","text":"Use arrow keys to scroll left and right between pages. The first page, Welcome Visitors, is always a good starting place."},"after":"0770e8a2b8b33024","date":1469220808166},{"type":"edit","id":"02bb08d746443229","item":{"type":"paragraph","id":"02bb08d746443229","text":"Use arrow keys to scroll left and right between pages. The first page, Welcome Visitors, is a good place to start."},"date":1469220826785},{"type":"edit","id":"54dd46484881afd2","item":{"type":"markdown","id":"54dd46484881afd2","text":"# Basics"},"date":1469220840394},{"type":"add","id":"ffa05e309dbb0482","item":{"type":"paragraph","id":"ffa05e309dbb0482","text":"# Ideas"},"after":"02bb08d746443229","date":1469220875593},{"type":"add","id":"ab121c266eb7925b","item":{"type":"paragraph","id":"ab121c266eb7925b","text":"We started with a few simple ideas and have remained committed to showing them to be sound."},"after":"ffa05e309dbb0482","date":1469220947050},{"type":"add","id":"36d2d6cadd149b5b","item":{"type":"paragraph","id":"36d2d6cadd149b5b","text":"[[Mixed Content]] on pages sufficient to get work done."},"after":"ab121c266eb7925b","date":1469221048134},{"type":"edit","id":"ffa05e309dbb0482","item":{"type":"markdown","id":"ffa05e309dbb0482","text":"# Ideas"},"date":1469221396832},{"type":"add","id":"0dd8924cbf5bef3a","item":{"type":"paragraph","id":"0dd8924cbf5bef3a","text":"[[Profligate Copying]] as a foundation for creativity."},"after":"36d2d6cadd149b5b","date":1469221797184},{"type":"add","id":"4636da41130d8661","item":{"type":"paragraph","id":"4636da41130d8661","text":"# Discoveries"},"after":"0dd8924cbf5bef3a","date":1469221889987},{"type":"add","id":"2996e3a402699dae","item":{"type":"paragraph","id":"2996e3a402699dae","text":"We find surprise in the mechanisms that have emerged from our daily use of a system still in active development."},"after":"4636da41130d8661","date":1469222496803},{"type":"edit","id":"4636da41130d8661","item":{"type":"markdown","id":"4636da41130d8661","text":"# Discoveries"},"date":1469222507622},{"type":"add","id":"2a973e632e768188","item":{"type":"paragraph","id":"2a973e632e768188","text":"[[Workflows]] composed from primitive actions replace interfaces engineered for purpose."},"after":"2996e3a402699dae","date":1469222681592},{"type":"add","id":"04f1407f380260c6","item":{"type":"paragraph","id":"04f1407f380260c6","text":"[[Structures]] aggregate through transformations applied by pages chosen for effect."},"after":"2a973e632e768188","date":1469224129076},{"type":"add","id":"5c7e13b743ae81e8","item":{"type":"paragraph","id":"5c7e13b743ae81e8","text":"[[Neighborhoods]] called up for the activity at hand outperform large static structures no matter how well intentioned."},"after":"04f1407f380260c6","date":1469224957680},{"type":"edit","id":"5c7e13b743ae81e8","item":{"type":"paragraph","id":"5c7e13b743ae81e8","text":"[[Neighborhoods]] called up for the activity at hand outperform static structures no matter how well intentioned."},"date":1469224975210},{"type":"fork","date":1495802390197},{"type":"fork","site":"about.fed.wiki","date":1536471660391}]}
+{
+  "title": "About Federated Wiki",
+  "story": [
+    {
+      "type": "paragraph",
+      "id": "92d3cd023c11efd2",
+      "text": "We remain excited about this platform and have become increasingly confident that it embodies important new ideas. We will explain."
+    },
+    {
+      "type": "paragraph",
+      "id": "3a6b0f4f179e9372",
+      "text": "In public we say federated wiki to distinguish our work from other wiki implementations. Here when we say wiki we mean this wiki, federated wiki."
+    },
+    {
+      "type": "paragraph",
+      "id": "8769d1d11dab3003",
+      "text": "We write in English on laptop computers. We aspire to be in all languages on all platforms but have always had something more exciting to do first. Forgive us."
+    },
+    {
+      "type": "markdown",
+      "id": "54dd46484881afd2",
+      "text": "# Basics"
+    },
+    {
+      "type": "paragraph",
+      "id": "0770e8a2b8b33024",
+      "text": "Click links to open new pages. Use the browser's back button to go back."
+    },
+    {
+      "type": "paragraph",
+      "id": "02bb08d746443229",
+      "text": "Use arrow keys to scroll left and right between pages. The first page, Welcome Visitors, is a good place to start."
+    },
+    {
+      "type": "markdown",
+      "id": "ffa05e309dbb0482",
+      "text": "# Ideas"
+    },
+    {
+      "type": "paragraph",
+      "id": "ab121c266eb7925b",
+      "text": "We started with a few simple ideas and have remained committed to showing them to be sound."
+    },
+    {
+      "type": "paragraph",
+      "id": "36d2d6cadd149b5b",
+      "text": "[[Mixed Content]] on pages sufficient to get work done."
+    },
+    {
+      "type": "paragraph",
+      "id": "0dd8924cbf5bef3a",
+      "text": "[[Profligate Copying]] as a foundation for creativity."
+    },
+    {
+      "type": "markdown",
+      "id": "4636da41130d8661",
+      "text": "# Discoveries"
+    },
+    {
+      "type": "paragraph",
+      "id": "2996e3a402699dae",
+      "text": "We find surprise in the mechanisms that have emerged from our daily use of a system still in active development."
+    },
+    {
+      "type": "paragraph",
+      "id": "2a973e632e768188",
+      "text": "[[Workflows]] composed from primitive actions replace interfaces engineered for purpose."
+    },
+    {
+      "type": "paragraph",
+      "id": "04f1407f380260c6",
+      "text": "[[Structures]] aggregate through transformations applied by pages chosen for effect."
+    },
+    {
+      "type": "paragraph",
+      "id": "5c7e13b743ae81e8",
+      "text": "[[Neighborhoods]] called up for the activity at hand outperform static structures no matter how well intentioned."
+    }
+  ],
+  "journal": [
+    {
+      "type": "create",
+      "item": {
+        "title": "About Federated Wiki",
+        "story": []
+      },
+      "date": 1469219743873
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "92d3cd023c11efd2"
+      },
+      "id": "92d3cd023c11efd2",
+      "type": "add",
+      "date": 1469219760938
+    },
+    {
+      "type": "edit",
+      "id": "92d3cd023c11efd2",
+      "item": {
+        "type": "paragraph",
+        "id": "92d3cd023c11efd2",
+        "text": "We remain excited about this platform and have become increasingly confident that it embodies important new ideas. We will explain."
+      },
+      "date": 1469220167465
+    },
+    {
+      "type": "add",
+      "id": "3a6b0f4f179e9372",
+      "item": {
+        "type": "paragraph",
+        "id": "3a6b0f4f179e9372",
+        "text": "In public we say federated wiki to distinguish our work from other wiki implementations. Here when we say wiki we mean this wiki, federated wiki."
+      },
+      "after": "92d3cd023c11efd2",
+      "date": 1469220239998
+    },
+    {
+      "type": "add",
+      "id": "8769d1d11dab3003",
+      "item": {
+        "type": "paragraph",
+        "id": "8769d1d11dab3003",
+        "text": "We write in English on laptop computers. We aspire to be in all languages on all platforms but have always had something more exciting to do first. Forgive us."
+      },
+      "after": "3a6b0f4f179e9372",
+      "date": 1469220407442
+    },
+    {
+      "type": "add",
+      "id": "54dd46484881afd2",
+      "item": {
+        "type": "paragraph",
+        "id": "54dd46484881afd2",
+        "text": "# Basics"
+      },
+      "after": "8769d1d11dab3003",
+      "date": 1469220512877
+    },
+    {
+      "type": "add",
+      "id": "0770e8a2b8b33024",
+      "item": {
+        "type": "paragraph",
+        "id": "0770e8a2b8b33024",
+        "text": "Click links to open new pages. Use the browser's back button to go back."
+      },
+      "after": "54dd46484881afd2",
+      "date": 1469220555434
+    },
+    {
+      "type": "add",
+      "id": "02bb08d746443229",
+      "item": {
+        "type": "paragraph",
+        "id": "02bb08d746443229",
+        "text": "Use arrow keys to scroll left and right between pages. The first page, Welcome Visitors, is always a good starting place."
+      },
+      "after": "0770e8a2b8b33024",
+      "date": 1469220808166
+    },
+    {
+      "type": "edit",
+      "id": "02bb08d746443229",
+      "item": {
+        "type": "paragraph",
+        "id": "02bb08d746443229",
+        "text": "Use arrow keys to scroll left and right between pages. The first page, Welcome Visitors, is a good place to start."
+      },
+      "date": 1469220826785
+    },
+    {
+      "type": "edit",
+      "id": "54dd46484881afd2",
+      "item": {
+        "type": "markdown",
+        "id": "54dd46484881afd2",
+        "text": "# Basics"
+      },
+      "date": 1469220840394
+    },
+    {
+      "type": "add",
+      "id": "ffa05e309dbb0482",
+      "item": {
+        "type": "paragraph",
+        "id": "ffa05e309dbb0482",
+        "text": "# Ideas"
+      },
+      "after": "02bb08d746443229",
+      "date": 1469220875593
+    },
+    {
+      "type": "add",
+      "id": "ab121c266eb7925b",
+      "item": {
+        "type": "paragraph",
+        "id": "ab121c266eb7925b",
+        "text": "We started with a few simple ideas and have remained committed to showing them to be sound."
+      },
+      "after": "ffa05e309dbb0482",
+      "date": 1469220947050
+    },
+    {
+      "type": "add",
+      "id": "36d2d6cadd149b5b",
+      "item": {
+        "type": "paragraph",
+        "id": "36d2d6cadd149b5b",
+        "text": "[[Mixed Content]] on pages sufficient to get work done."
+      },
+      "after": "ab121c266eb7925b",
+      "date": 1469221048134
+    },
+    {
+      "type": "edit",
+      "id": "ffa05e309dbb0482",
+      "item": {
+        "type": "markdown",
+        "id": "ffa05e309dbb0482",
+        "text": "# Ideas"
+      },
+      "date": 1469221396832
+    },
+    {
+      "type": "add",
+      "id": "0dd8924cbf5bef3a",
+      "item": {
+        "type": "paragraph",
+        "id": "0dd8924cbf5bef3a",
+        "text": "[[Profligate Copying]] as a foundation for creativity."
+      },
+      "after": "36d2d6cadd149b5b",
+      "date": 1469221797184
+    },
+    {
+      "type": "add",
+      "id": "4636da41130d8661",
+      "item": {
+        "type": "paragraph",
+        "id": "4636da41130d8661",
+        "text": "# Discoveries"
+      },
+      "after": "0dd8924cbf5bef3a",
+      "date": 1469221889987
+    },
+    {
+      "type": "add",
+      "id": "2996e3a402699dae",
+      "item": {
+        "type": "paragraph",
+        "id": "2996e3a402699dae",
+        "text": "We find surprise in the mechanisms that have emerged from our daily use of a system still in active development."
+      },
+      "after": "4636da41130d8661",
+      "date": 1469222496803
+    },
+    {
+      "type": "edit",
+      "id": "4636da41130d8661",
+      "item": {
+        "type": "markdown",
+        "id": "4636da41130d8661",
+        "text": "# Discoveries"
+      },
+      "date": 1469222507622
+    },
+    {
+      "type": "add",
+      "id": "2a973e632e768188",
+      "item": {
+        "type": "paragraph",
+        "id": "2a973e632e768188",
+        "text": "[[Workflows]] composed from primitive actions replace interfaces engineered for purpose."
+      },
+      "after": "2996e3a402699dae",
+      "date": 1469222681592
+    },
+    {
+      "type": "add",
+      "id": "04f1407f380260c6",
+      "item": {
+        "type": "paragraph",
+        "id": "04f1407f380260c6",
+        "text": "[[Structures]] aggregate through transformations applied by pages chosen for effect."
+      },
+      "after": "2a973e632e768188",
+      "date": 1469224129076
+    },
+    {
+      "type": "add",
+      "id": "5c7e13b743ae81e8",
+      "item": {
+        "type": "paragraph",
+        "id": "5c7e13b743ae81e8",
+        "text": "[[Neighborhoods]] called up for the activity at hand outperform large static structures no matter how well intentioned."
+      },
+      "after": "04f1407f380260c6",
+      "date": 1469224957680
+    },
+    {
+      "type": "edit",
+      "id": "5c7e13b743ae81e8",
+      "item": {
+        "type": "paragraph",
+        "id": "5c7e13b743ae81e8",
+        "text": "[[Neighborhoods]] called up for the activity at hand outperform static structures no matter how well intentioned."
+      },
+      "date": 1469224975210
+    },
+    {
+      "type": "fork",
+      "date": 1495802390197
+    },
+    {
+      "type": "fork",
+      "site": "about.fed.wiki",
+      "date": 1536471660391
+    }
+  ]
+}

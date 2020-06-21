@@ -1,1 +1,206 @@
-{"title":"Field Guide to the Federation","story":[{"type":"paragraph","id":"1eb0999952e0c847","text":"We show you what we find interesting in the federation and suggest how you can make yourself at home here."},{"type":"paragraph","id":"96fb4c9bb0463f56","text":"Tip: Use the browser's back button to go back. Use the arrow keys to scroll left and right. Don't use touch until you understand how wiki works (it could work better)."},{"type":"paragraph","id":"6b95cf9425142c87","text":"[[You're New Here]] so make yourself comfortable."},{"type":"paragraph","id":"9a5d18bcf23308b0","text":"[[Featured Sites]] that show how we like to write."},{"type":"paragraph","id":"8b6536865792e0ed","text":"[[Watch Everything]] that is new in the federation."},{"type":"paragraph","id":"9102503c5b1c9a53","text":"[[Welcome Your Community]] to work this way."},{"type":"paragraph","id":"4298e056e51456a4","text":"[[Keep Safe]] from yourself, others, and the march of time."}],"journal":[{"type":"create","item":{"title":"Field Guide to the Federation","story":[]},"date":1465750303628},{"item":{"type":"factory","id":"1eb0999952e0c847"},"id":"1eb0999952e0c847","type":"add","date":1465750327845},{"type":"edit","id":"1eb0999952e0c847","item":{"type":"paragraph","id":"1eb0999952e0c847","text":"We show you what we find interesting in the federation and suggest how you can make yourself at home here."},"date":1465750393944},{"type":"add","id":"6b95cf9425142c87","item":{"type":"paragraph","id":"6b95cf9425142c87","text":"[[You're New Here]] so make yourself comfortable."},"after":"1eb0999952e0c847","date":1465750472348},{"type":"add","id":"96fb4c9bb0463f56","item":{"type":"paragraph","id":"96fb4c9bb0463f56","text":"Use the browser's back button to go back."},"after":"1eb0999952e0c847","date":1465750767712},{"type":"add","id":"6378d5eb44ea7f6e","item":{"type":"paragraph","id":"6378d5eb44ea7f6e","text":"Use the arrow keys to scroll left and right."},"after":"96fb4c9bb0463f56","date":1465750796365},{"type":"edit","id":"96fb4c9bb0463f56","item":{"type":"paragraph","id":"96fb4c9bb0463f56","text":"Tip: Use the browser's back button to go back."},"date":1465750843856},{"type":"remove","id":"6378d5eb44ea7f6e","date":1465750848604},{"type":"edit","id":"96fb4c9bb0463f56","item":{"type":"paragraph","id":"96fb4c9bb0463f56","text":"Tip: Use the browser's back button to go back. Use the arrow keys to scroll left and right."},"date":1465750851121},{"type":"edit","id":"96fb4c9bb0463f56","item":{"type":"paragraph","id":"96fb4c9bb0463f56","text":"Tip: Use the browser's back button to go back. Use the arrow keys to scroll left and right. Don't use touch until you understand how wiki works."},"date":1465750877971},{"type":"edit","id":"96fb4c9bb0463f56","item":{"type":"paragraph","id":"96fb4c9bb0463f56","text":"Tip: Use the browser's back button to go back. Use the arrow keys to scroll left and right. Don't use touch until you understand how wiki works (it could work better)."},"date":1465750892428},{"type":"add","id":"9a5d18bcf23308b0","item":{"type":"paragraph","id":"9a5d18bcf23308b0","text":"[[Featured Sites]] that show how we like to write."},"after":"6b95cf9425142c87","date":1465752423709},{"type":"add","id":"8b6536865792e0ed","item":{"type":"paragraph","id":"8b6536865792e0ed","text":"[[Watch Everything]] that is new in the federation."},"after":"9a5d18bcf23308b0","date":1465757095163},{"type":"add","id":"9102503c5b1c9a53","item":{"type":"paragraph","id":"9102503c5b1c9a53","text":"[[Welcome Your Community]] to work this way."},"after":"8b6536865792e0ed","date":1465758088668},{"type":"add","id":"4298e056e51456a4","item":{"type":"paragraph","id":"4298e056e51456a4","text":"[[Keep Safe]] from yourself, others and the march of time."},"after":"9102503c5b1c9a53","date":1488335368485},{"type":"edit","id":"4298e056e51456a4","item":{"type":"paragraph","id":"4298e056e51456a4","text":"[[Keep Safe]] from yourself, others, and the march of time."},"date":1498664660237},{"type":"fork","site":"hello.ward.bay.wiki.org","date":1537893052941}]}
+{
+  "title": "Field Guide to the Federation",
+  "story": [
+    {
+      "type": "paragraph",
+      "id": "1eb0999952e0c847",
+      "text": "We show you what we find interesting in the federation and suggest how you can make yourself at home here."
+    },
+    {
+      "type": "paragraph",
+      "id": "96fb4c9bb0463f56",
+      "text": "Tip: Use the browser's back button to go back. Use the arrow keys to scroll left and right. Don't use touch until you understand how wiki works (it could work better)."
+    },
+    {
+      "type": "paragraph",
+      "id": "6b95cf9425142c87",
+      "text": "[[You're New Here]] so make yourself comfortable."
+    },
+    {
+      "type": "paragraph",
+      "id": "9a5d18bcf23308b0",
+      "text": "[[Featured Sites]] that show how we like to write."
+    },
+    {
+      "type": "paragraph",
+      "id": "8b6536865792e0ed",
+      "text": "[[Watch Everything]] that is new in the federation."
+    },
+    {
+      "type": "paragraph",
+      "id": "9102503c5b1c9a53",
+      "text": "[[Welcome Your Community]] to work this way."
+    },
+    {
+      "type": "paragraph",
+      "id": "4298e056e51456a4",
+      "text": "[[Keep Safe]] from yourself, others, and the march of time."
+    }
+  ],
+  "journal": [
+    {
+      "type": "create",
+      "item": {
+        "title": "Field Guide to the Federation",
+        "story": []
+      },
+      "date": 1465750303628
+    },
+    {
+      "item": {
+        "type": "factory",
+        "id": "1eb0999952e0c847"
+      },
+      "id": "1eb0999952e0c847",
+      "type": "add",
+      "date": 1465750327845
+    },
+    {
+      "type": "edit",
+      "id": "1eb0999952e0c847",
+      "item": {
+        "type": "paragraph",
+        "id": "1eb0999952e0c847",
+        "text": "We show you what we find interesting in the federation and suggest how you can make yourself at home here."
+      },
+      "date": 1465750393944
+    },
+    {
+      "type": "add",
+      "id": "6b95cf9425142c87",
+      "item": {
+        "type": "paragraph",
+        "id": "6b95cf9425142c87",
+        "text": "[[You're New Here]] so make yourself comfortable."
+      },
+      "after": "1eb0999952e0c847",
+      "date": 1465750472348
+    },
+    {
+      "type": "add",
+      "id": "96fb4c9bb0463f56",
+      "item": {
+        "type": "paragraph",
+        "id": "96fb4c9bb0463f56",
+        "text": "Use the browser's back button to go back."
+      },
+      "after": "1eb0999952e0c847",
+      "date": 1465750767712
+    },
+    {
+      "type": "add",
+      "id": "6378d5eb44ea7f6e",
+      "item": {
+        "type": "paragraph",
+        "id": "6378d5eb44ea7f6e",
+        "text": "Use the arrow keys to scroll left and right."
+      },
+      "after": "96fb4c9bb0463f56",
+      "date": 1465750796365
+    },
+    {
+      "type": "edit",
+      "id": "96fb4c9bb0463f56",
+      "item": {
+        "type": "paragraph",
+        "id": "96fb4c9bb0463f56",
+        "text": "Tip: Use the browser's back button to go back."
+      },
+      "date": 1465750843856
+    },
+    {
+      "type": "remove",
+      "id": "6378d5eb44ea7f6e",
+      "date": 1465750848604
+    },
+    {
+      "type": "edit",
+      "id": "96fb4c9bb0463f56",
+      "item": {
+        "type": "paragraph",
+        "id": "96fb4c9bb0463f56",
+        "text": "Tip: Use the browser's back button to go back. Use the arrow keys to scroll left and right."
+      },
+      "date": 1465750851121
+    },
+    {
+      "type": "edit",
+      "id": "96fb4c9bb0463f56",
+      "item": {
+        "type": "paragraph",
+        "id": "96fb4c9bb0463f56",
+        "text": "Tip: Use the browser's back button to go back. Use the arrow keys to scroll left and right. Don't use touch until you understand how wiki works."
+      },
+      "date": 1465750877971
+    },
+    {
+      "type": "edit",
+      "id": "96fb4c9bb0463f56",
+      "item": {
+        "type": "paragraph",
+        "id": "96fb4c9bb0463f56",
+        "text": "Tip: Use the browser's back button to go back. Use the arrow keys to scroll left and right. Don't use touch until you understand how wiki works (it could work better)."
+      },
+      "date": 1465750892428
+    },
+    {
+      "type": "add",
+      "id": "9a5d18bcf23308b0",
+      "item": {
+        "type": "paragraph",
+        "id": "9a5d18bcf23308b0",
+        "text": "[[Featured Sites]] that show how we like to write."
+      },
+      "after": "6b95cf9425142c87",
+      "date": 1465752423709
+    },
+    {
+      "type": "add",
+      "id": "8b6536865792e0ed",
+      "item": {
+        "type": "paragraph",
+        "id": "8b6536865792e0ed",
+        "text": "[[Watch Everything]] that is new in the federation."
+      },
+      "after": "9a5d18bcf23308b0",
+      "date": 1465757095163
+    },
+    {
+      "type": "add",
+      "id": "9102503c5b1c9a53",
+      "item": {
+        "type": "paragraph",
+        "id": "9102503c5b1c9a53",
+        "text": "[[Welcome Your Community]] to work this way."
+      },
+      "after": "8b6536865792e0ed",
+      "date": 1465758088668
+    },
+    {
+      "type": "add",
+      "id": "4298e056e51456a4",
+      "item": {
+        "type": "paragraph",
+        "id": "4298e056e51456a4",
+        "text": "[[Keep Safe]] from yourself, others and the march of time."
+      },
+      "after": "9102503c5b1c9a53",
+      "date": 1488335368485
+    },
+    {
+      "type": "edit",
+      "id": "4298e056e51456a4",
+      "item": {
+        "type": "paragraph",
+        "id": "4298e056e51456a4",
+        "text": "[[Keep Safe]] from yourself, others, and the march of time."
+      },
+      "date": 1498664660237
+    },
+    {
+      "type": "fork",
+      "site": "hello.ward.bay.wiki.org",
+      "date": 1537893052941
+    }
+  ]
+}
