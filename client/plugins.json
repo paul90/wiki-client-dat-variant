@@ -15,6 +15,7 @@
   "flagmatic":  "/plugins/flagmatic",
   "force":  "/plugins/force",
   "future": "/plugins/future",
+  "graphviz": "/plugins/graphviz",
   "grep": "/plugins/grep",
   "html": "/plugins/html",
   "image": "/plugins/image",
