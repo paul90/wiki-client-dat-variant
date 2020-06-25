@@ -32,3 +32,4 @@ dat.json
 
 # ignore plugins
 client/plugins/
+client/wiki.json
