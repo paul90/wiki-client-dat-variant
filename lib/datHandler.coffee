@@ -80,6 +80,7 @@ datHandler.init = init = () ->
         pluginPages[page] = {url: pluginURL, plugin: plugin} if page.endsWith('.json')
 
   buildFactoriesList = () ->
+
     _.each pluginRoutes, (pluginURL, plugin) ->
       url = pluginURL + "/factory.json"
       fetch(url)
@@ -106,6 +107,20 @@ datHandler.init = init = () ->
     _.each pages, (page) ->
       defaultPages.push page.name
 
+  preLoadEditors = (catalog) ->
+    catalog
+      .filter((entry) -> entry.editor)
+      .forEach((entry) ->
+        console.log("#{entry.name} Plugin declares an editor, so pre-loading the plugin")
+        wiki.getPlugin(entry.name.toLowerCase(), (plugin) ->
+            if ! plugin.editor or typeof plugin.editor != 'function'
+              console.log("""#{entry.name} Plugin ERROR.
+                Cannot find `editor` function in plugin. Set `"editor": false` in factory.json or
+                Correct the plugin to include all three of `{emit, bind, editor}`
+                """)
+          )
+      )
+
   # are we using a mounted frontend?
   if usingFrontend
     clientOrigin = '/.ui'
@@ -124,6 +139,8 @@ datHandler.init = init = () ->
   await buildFactoriesList()
 
   await buildDefaultPageList()
+
+  preLoadEditos(factories)
 
   $.holdReady false
 

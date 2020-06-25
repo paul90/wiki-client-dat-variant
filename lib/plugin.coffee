@@ -1,5 +1,6 @@
 # The plugin module manages the dynamic retrieval of plugin
 # javascript including additional scripts that may be requested.
+forward = require './forward'
 
 module.exports = plugin = {}
 
@@ -14,10 +15,11 @@ escape = (s) ->
     .replace(/'/g, '&#x27;')
     .replace(/\//g,'&#x2F;')
 
-# define cachedScript that allows fetching a cached script.
+# define loadScript that allows fetching a script.
 # see example in http://api.jquery.com/jQuery.getScript/
 
-cachedScript = (url, options) ->
+loadScript = (url, options) ->
+  console.log("loading url:", url)
   options = $.extend(options or {},
     dataType: "script"
     cache: true
@@ -26,26 +28,120 @@ cachedScript = (url, options) ->
   $.ajax options
 
 scripts = []
+loadingScripts = {}
 getScript = plugin.getScript = (url, callback = () ->) ->
-  # console.log "URL :", url, "\nCallback :", callback
   if url in scripts
     callback()
   else
-    cachedScript url
+    loadScript url
       .done ->
         scripts.push url
         callback()
-      .fail ->
+      .fail (_jqXHR, _textStatus, err) ->
+        console.log('getScript: Failed to load:', url, err)
         callback()
 
-plugin.get = plugin.getPlugin = (name, callback) ->
-  return callback(window.plugins[name]) if window.plugins[name]
-  # create plugin url using pluginRoutes
-  pluginScriptUrl = "#{wiki.pluginRoutes[name]}/client/#{name}.js"
-  getScript pluginScriptUrl, () ->
-    return callback(window.plugins[name])
+plugin.renderFrom = (notifIndex) ->
+  $items = $(".item").slice(notifIndex)
+  
+  console.log "notifIndex", notifIndex, "about to render", $items.toArray()
+  promise = Promise.resolve()
+  emitNextItem = (itemElems) ->
+    return promise if itemElems.length == 0
+    itemElem = itemElems.shift()
+    $item = $(itemElem)
+    item = $item.data('item')
+    promise = promise.then ->
+      return new Promise (resolve, reject) ->
+        plugin.emit $item.empty(), item, () ->
+          resolve()
+    emitNextItem(itemElems)
+  # The concat here makes a copy since we need to loop through the same
+  # items to do a bind.
+  promise = emitNextItem $items.toArray()
+  # Binds must be called sequentially in order to store the promises used to order bind operations.
+  # Note: The bind promises used here are for ordering "bind creation".
+  # The ordering of "bind results" is done within the plugin.bind wrapper.
+  promise = promise.then ->
+    promise = Promise.resolve()
+    bindNextItem = (itemElems) ->
+      return promise if itemElems.length == 0
+      itemElem = itemElems.shift()
+      $item = $(itemElem)
+      item = $item.data('item')
+      promise = promise.then ->
+        return new Promise (resolve, reject) ->
+          plugin.getPlugin item.type, (plugin) ->
+            plugin.bind $item, item
+            resolve()
+      bindNextItem(itemElems)
+    bindNextItem($items.toArray())
+  return promise
 
-plugin.do = plugin.doPlugin = (div, item, done=->) ->
+bind = (name, pluginBind) ->
+  fn = ($item, item, oldIndex) ->
+    index = $('.item').index($item)
+    consumes = window.plugins[name].consumes
+    waitFor = Promise.resolve()
+    # Wait for all items in the lineup that produce what we consume
+    # before calling our bind method.
+    if consumes
+      deps = []
+      consumes.forEach (consuming) ->
+        producers = $(".item:lt(#{index})").filter(consuming)
+        console.log(name, "consumes", consuming)
+        console.log(producers, "produce", consuming)
+        if not producers or producers.length == 0
+          console.log 'warn: no items in lineup that produces', consuming
+        console.log("there are #{producers.length} instances of #{consuming}")
+        producers.each (_i, el) ->
+          deps.push(el.promise)
+      waitFor = Promise.all(deps)
+    waitFor
+      .then ->
+        bindPromise = pluginBind($item, item)
+        if not bindPromise or typeof(bindPromise.then) == 'function'
+          bindPromise = Promise.resolve(bindPromise)
+        # This is where the "bind results" promise for the current item is stored
+        $item[0].promise = bindPromise
+      .then ->
+        # If the plugin has the needed callback, subscribe to server side events
+        # for the current page
+        if window.plugins[name].processServerEvent
+          console.log 'listening for server events', $item, item
+          forward.init $item, item, window.plugins[name].processServerEvent
+      .catch (e) ->
+        console.log 'plugin emit: unexpected error', e
+  return fn
+
+plugin.wrap = (name, p) ->
+  p.bind = bind(name, p.bind)
+  return p
+
+plugin.get = plugin.getPlugin = (name, callback) ->
+  return loadingScripts[name].then(callback) if loadingScripts[name]
+  loadingScripts[name] = new Promise (resolve, _reject) ->
+    return resolve(window.plugins[name]) if window.plugins[name]
+      # create plugin url using pluginRoutes
+    pluginScriptUrl = "#{wiki.pluginRoutes[name]}/client/#{name}.js"
+    getScript pluginScriptUrl, () ->
+      p = window.plugins[name]
+      if p
+        plugin.wrap(name, p)
+      return resolve(p)
+  loadingScripts[name].then (plugin) ->
+    delete loadingScripts[name]
+    return callback(plugin)
+  return loadingScripts[name]
+
+
+plugin.do = plugin.doPlugin = ($item, item, done=->) ->
+  $item.data('item', item)
+  promise = plugin.renderFrom $('.item').index($item)
+  promise.then ->
+    done()
+
+plugin.emit = (div, item, done=->) ->
   error = (ex, script) ->
     div.append """
       <div class="error">
@@ -71,17 +167,16 @@ plugin.do = plugin.doPlugin = (div, item, done=->) ->
           href="http://plugins.fed.wiki.org/about-plugins.html"
           title="http://plugins.fed.wiki.org/about-plugins.html">
             About Plugins
+            <img src="/images/external-link-ltr-icon.png">
           </a>
         </p>
       """
       $('.retry').on 'click', ->
         if script.emit.length > 2
           script.emit div, item, ->
-            script.bind div, item
             done()
         else
           script.emit div, item
-          script.bind div, item
           done()
 
   div.data 'pageElement', div.parents(".page")
@@ -91,11 +186,10 @@ plugin.do = plugin.doPlugin = (div, item, done=->) ->
       throw TypeError("Can't find plugin for '#{item.type}'") unless script?
       if script.emit.length > 2
         script.emit div, item, ->
-          script.bind div, item
+          script.bind div, item if bind
           done()
       else
         script.emit div, item
-        script.bind div, item
         done()
     catch err
       console.log 'plugin error', err

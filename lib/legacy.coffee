@@ -13,13 +13,31 @@ dialog = require './dialog'
 link = require './link'
 target = require './target'
 license = require './license'
+plugin = require './plugin'
 
 asSlug = require('./page').asSlug
 newPage = require('./page').newPage
 
 # performed in datHandler, as factories.json does not exist in dat variant.  
-#wiki.origin.get 'system/factories.json', (error, data) ->
-#  window.catalog = data
+### 
+preLoadEditors = (catalog) ->
+  catalog
+    .filter((entry) -> entry.editor)
+    .forEach((entry) ->
+      console.log("#{entry.name} Plugin declares an editor, so pre-loading the plugin")
+      wiki.getPlugin(entry.name.toLowerCase(), (plugin) ->
+          if ! plugin.editor or typeof plugin.editor != 'function'
+            console.log("""#{entry.name} Plugin ERROR.
+              Cannot find `editor` function in plugin. Set `"editor": false` in factory.json or
+              Correct the plugin to include all three of `{emit, bind, editor}`
+              """)
+        )
+    )
+
+wiki.origin.get 'system/factories.json', (error, data) ->
+  window.catalog = data
+  preLoadEditors data
+###
 
 $ ->
   dialog.emit()
@@ -78,7 +96,6 @@ $ ->
   deletePage = (pageObject, $page) ->
     console.log 'fork to delete'
     pageHandler.delete pageObject, $page, (err) ->
-      console.log "legacy - deletePage ", err
       return if err?
       console.log 'server delete successful'
       if pageObject.isRecycler()
@@ -105,12 +122,14 @@ $ ->
     link.doInternalLink name, page, $(e.target).data('site')
     return false
 
+  originalPageIndex = null
   $('.main')
     .sortable({handle: '.page-handle', cursor: 'grabbing'})
       .on 'sortstart', (evt, ui) ->
         return if not ui.item.hasClass('page')
         noScroll = true
         active.set ui.item, noScroll
+        originalPageIndex = $(".page").index(ui.item[0])
       .on 'sort', (evt, ui) ->
         return if not ui.item.hasClass('page')
         $page = ui.item
@@ -122,17 +141,22 @@ $ ->
 
       .on 'sortstop', (evt, ui) ->
         return if not ui.item.hasClass('page')
+        $page = ui.item
         $pages = $('.page')
         index = $pages.index($('.active'))
-        if ui.item.hasClass('pending-remove')
+        firstItemIndex = $('.item').index($page.find('.item')[0])
+        if $page.hasClass('pending-remove')
           return if $pages.length == 1
-          index = index - 1 if $pages.length - 1 == index
-          lineup.removeKey(ui.item.data('key'))
-          ui.item.remove()
+          lineup.removeKey($page.data('key'))
+          $page.remove()
           active.set($('.page')[index])
         else
-          lineup.changePageIndex(ui.item.data('key'), index)
+          lineup.changePageIndex($page.data('key'), index)
           active.set $('.active')
+          if originalPageIndex < index
+            index = originalPageIndex
+            firstItemIndex = $('.item').index($($('.page')[index]).find('.item')[0])
+        plugin.renderFrom firstItemIndex
         state.setUrl()
         state.debugStates()
 
@@ -195,7 +219,8 @@ $ ->
         lineup.removeAllAfterKey(key) unless e.shiftKey
         link.createPage("#{slug}_rev#{rev}", $page.data('site'))
           .appendTo($('.main'))
-          .each refresh.cycle
+          .each (_i, e) ->
+            refresh.cycle $(e)
         active.set($('.page').last())
 
     .delegate '.fork-page', 'click', (e) ->
@@ -327,5 +352,15 @@ $ ->
 
   $ ->
     state.first()
-    $('.page').each refresh.cycle
-    active.set($('.page').last())
+    pages = $('.page').toArray()
+    # Render pages in order
+    # Emits and "bind creations" for the previous page must be complete before we start
+    # rendering the next page or plugin bind ordering will not work
+    renderNextPage = (pages) ->
+      if pages.length == 0
+        active.set($('.page').last())
+        return
+      $page = $(pages.shift())
+      refresh.cycle($page).then () ->
+        renderNextPage(pages)
+    renderNextPage(pages)

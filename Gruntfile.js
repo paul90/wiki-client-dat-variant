@@ -3,6 +3,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-uglify-es');
   grunt.loadNpmTasks('grunt-git-authors');
   grunt.loadNpmTasks('grunt-retire');
 
@@ -58,6 +59,7 @@ module.exports = function (grunt) {
         dest: 'client/client.js',
         options: {
           transform: ['coffeeify', 'browserify-versionify'],
+          transform: [['coffeeify', {transpile: {presets: ['@babel/preset-env']}}]],
           browserifyOptions: {
             extensions: ".coffee"
           }
@@ -70,7 +72,7 @@ module.exports = function (grunt) {
         src: ['./testclient.coffee'],
         dest: 'client/test/testclient.js',
         options: {
-          transform: ['coffeeify'],
+          transform: [['coffeeify', {transpile: {presets: ['@babel/preset-env']}}]],
           browserifyOptions: {
             extensions: ".coffee"
           }
