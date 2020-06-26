@@ -140,7 +140,7 @@ datHandler.init = init = () ->
 
   await buildDefaultPageList()
 
-  preLoadEditos(factories)
+  preLoadEditors(factories)
 
   $.holdReady false
 
