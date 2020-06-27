@@ -31,3 +31,4 @@ i2p-lbt <lbt@i2pmail.org>
 Andrew Ettinger <andrew@skoobistudios.com>
 Robert Smith <smithrobertlawrence@gmail.com>
 Joshua Benuck <joshua_benuck@yahoo.com>
+Eric Dobbs <eric@dobbse.net>
