@@ -39,7 +39,7 @@
     "@mapbox/sanitize-caja": "^0.1.4",
     "browserify-versionify": "^1.0.6",
     "coffeeify": "^3.0.1",
-    "coffeescript": "^2.3.2",
+    "coffeescript": "^2.5.0",
     "expect.js": "^0.3.1",
     "grunt": "^1.0.3",
     "grunt-babel": "^8.0.0",
@@ -51,8 +51,9 @@
     "grunt-mocha-test": "^0.13.2",
     "grunt-retire": "^1.0.3",
     "marked": "^0.7.0",
+    "minisearch": "^2.1.3",
     "mocha": "^6.2.0",
-    "sinon": "^7.4.1"
+    "sinon": "^7.5.0"
   },
   "license": "MIT",
   "repository": {

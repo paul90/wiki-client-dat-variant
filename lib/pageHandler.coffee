@@ -71,7 +71,7 @@ recursiveGet = ({pageInformation, whenGotten, whenNotGotten, localContext}) ->
           The page handler has run into problems with this request.
           <pre class=error>#{JSON.stringify pageInformation}</pre>
           The requested url.
-          <pre class=error>#{slug}</pre>
+          <pre class=error>#{url}</pre>
           The server reported status.
           <pre class=error>#{err.xhr?.status}</pre>
           The error message.
@@ -79,6 +79,7 @@ recursiveGet = ({pageInformation, whenGotten, whenNotGotten, localContext}) ->
           These problems are rarely solved by reporting issues.
           There could be additional information reported in the browser's console.log.
           More information might be accessible by fetching the page outside of wiki.
+          <a href="#{url}" target="_blank">try-now</a>
         """
         trouble = newPage {title: "Trouble: Can't Get Page"}, null
         trouble.addItem {type:'html', text}
@@ -155,17 +156,24 @@ pushToServer = ($page, pagePutInfo, action) ->
   if action.type == 'fork'
     bundle.item = deepCopy pageObject.getRawPage()
 
-  wiki.origin.put pagePutInfo.slug, bundle, (err) ->
+  # we need the original page so we can update the index
+  wiki.origin.get "#{pagePutInfo.slug}.json", (err, originalPage) ->
     if err
-      action.error = { type: err.type, msg: err.msg, response: err.xhr.responseText}
-      pushToLocal $page, pagePutInfo, action
+      originalStory = []
     else
-      pageObject.apply action if pageObject?.apply
-      neighborhood.updateSitemap pageObject
-      addToJournal $page.find('.journal'), action
-      if action.type == 'fork'
-        wiki.local.delete $page.attr('id')
-###
+      originalStory = originalPage.story or []
+
+    wiki.origin.put pagePutInfo.slug, bundle, (err) ->
+      if err
+        action.error = { type: err.type, msg: err.msg, response: err.xhr.responseText}
+        pushToLocal $page, pagePutInfo, action
+      else
+        pageObject.apply action if pageObject?.apply
+        neighborhood.updateSitemap pageObject
+        neighborhood.updateIndex pageObject, originalStory
+        addToJournal $page.find('.journal'), action
+        if action.type == 'fork'
+          wiki.local.delete $page.attr('id')
 
 pageHandler.put = ($page, action) ->
 
@@ -238,5 +246,6 @@ pageHandler.delete = (pageObject, $page, done) ->
       more = ->
         # err = null
         neighborhood.deleteFromSitemap pageObject unless err?
+        neighborhood.deleteFromIndex pageObject unless err?
         done err
       setTimeout(more, 300) # simulate server turnaround
