@@ -8,8 +8,6 @@ module.exports = sitemapHandler = {}
 
 originSitemap = []
 
-sitemapHandler.updatePage = (page) ->
-
 buildSitemap = () ->
 
   editDate = (journal) ->

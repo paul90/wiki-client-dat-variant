@@ -4,6 +4,8 @@
 
 _ = require 'underscore'
 sitemapHandler = require "./sitemapHandler"
+siteindexHandler = require "./siteindexHandler"
+
 miniSearch = require 'minisearch'
 
 module.exports = neighborhood = {}
@@ -151,6 +153,8 @@ neighborhood.updateIndex = (pageObject, originalStory) ->
     'title': title
     'content': newText
   }
+  # save the updated index
+  siteindexHandler.update()
 
 neighborhood.deleteFromIndex = (pageObject) ->
   site = location.host
@@ -169,6 +173,9 @@ neighborhood.deleteFromIndex = (pageObject) ->
   catch err
     # swallow error, if the page was not in index
     console.log "removing #{slug} from index failed", err unless err.message.includes('not in the index')
+
+  # save the updated index
+  siteindexHandler.update()
 
 
 neighborhood.search = (searchQuery)->
