@@ -197,6 +197,16 @@ siteAdapter.origin = {
             error: (xhr, type, msg) -> done {msg, xhr}, null
         else
           done {msg, xhr}, null
+  getIndex: (route, callback) ->
+    done = (err, value) -> if (callback) then callback(err, value)
+    console.log "wiki.origin.get #{route}"
+    originRoute = "wiki/" + route
+    $.ajax
+      type: 'GET'
+      dataType: 'text'
+      url: "/#{originRoute}"
+      success: (page) -> done null, page
+      error: (xhr, type, msg) -> done {msg, xhr}, null
   put: (route, data, done) ->
     filePath = "/wiki/#{route}.json"
     fileData = JSON.stringify(data, null, '\t')
@@ -384,6 +394,56 @@ siteAdapter.site = (site) ->
         $.ajax
           type: 'GET'
           dataType: 'json'
+          url: url
+          xhrFields: { withCredentials: useCredentials }
+          success: (data) ->
+            if data.title is 'Login Required' and !url.includes('login-required') and credentialsNeeded[site] isnt true
+              credentialsNeeded[site] = true
+              getContent route, (err, page) ->
+                if !err
+                  withCredsStore.setItem(site, true)
+                  done err, page
+                else
+                  credentialsNeeded[site] = false
+                  done err, page
+            else
+              done null, data
+          error: (xhr, type, msg) ->
+            done {msg, xhr}, null
+
+      if sitePrefix[site]?
+        if sitePrefix[site] is ""
+          console.log "#{site} is unreachable"
+          errMsg = {msg: "#{site} is unreachable", xhr: {status: 0}}
+          done errMsg, null
+          Promise.reject(errMsg) unless callback
+        else
+          getContent route, done
+      else
+        #findAdapterQ.push {site: site}, (prefix) ->
+        findAdapter site, (prefix) ->
+          if prefix is ""
+            console.log "#{site} is unreachable"
+            errMsg = {msg: "#{site} is unreachable", xhr: {status: 0}}
+            done errMsg, null
+            Promise.reject(errMsg) unless callback
+          else
+            getContent route, done
+
+    getIndex: (route, callback) ->
+      # used for getting the serialized JSON file used by minisearch, needs to be a text string rather than an object.
+      # This only differs from `get` by using dataType of text, rather than json.
+      done = (err, value) -> if (callback) then callback(err, value)
+
+      getContent = (route, done) ->
+        if window.location.protocol is "hyper:" and sitePrefix[site].startsWith '//'
+          route = "wiki/" + route
+        url = "#{sitePrefix[site]}/#{route}"
+        useCredentials = credentialsNeeded[site] || false
+
+        $.ajax
+          type: 'GET'
+          dataType: 'text'
           url: url
           xhrFields: { withCredentials: useCredentials }
           success: (data) ->
