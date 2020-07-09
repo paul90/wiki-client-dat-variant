@@ -120,11 +120,8 @@ pushToLocal = ($page, pagePutInfo, action) ->
     $page.addClass("local")
 
 pushToServer = ($page, pagePutInfo, action) ->
-  if action.type == 'create'
-    page = {title: action.item.title, story: [], journal: []}
-  else
-    page = lineup.atKey($page.data('key')).getRawPage()
-    page.journal = [] unless page.journal?
+  page = lineup.atKey($page.data('key')).getRawPage()
+  page.journal = [] unless page.journal?
 
   # we need the original page so we can update the index
   wiki.origin.get "#{pagePutInfo.slug}.json", (err, originalPage) ->
