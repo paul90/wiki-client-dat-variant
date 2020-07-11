@@ -79,18 +79,23 @@ findAdapterQ = queue( (task, done) ->
   ), ->
     switch location.protocol
       when 'hyper:'
-        testURL = "https://#{site}/favicon.png"
+        testURL = "dat://#{site}/favicon.png"
         testWikiSite testURL, (->
-          sitePrefix[site] = "https://#{site}"
-          done "https://#{site}"
+          sitePrefix[site] = "dat://#{site}"
+          done "dat://#{site}"
         ), ->
-          testURL = "http://#{site}/favicon.png"
+          testURL = "https://#{site}/favicon.png"
           testWikiSite testURL, (->
-            sitePrefix[site] = "http://#{site}"
-            done "http://#{site}"
+            sitePrefix[site] = "https://#{site}"
+            done "https://#{site}"
           ), ->
-            sitePrefix[site] = ""
-            done ""
+            testURL = "http://#{site}/favicon.png"
+            testWikiSite testURL, (->
+              sitePrefix[site] = "http://#{site}"
+              done "http://#{site}"
+            ), ->
+              sitePrefix[site] = ""
+              done ""
       when 'http:'
         testURL = "https://#{site}/favicon.png"
         testWikiSite testURL, (->
