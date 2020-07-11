@@ -1,6 +1,6 @@
 {
   "name": "wiki-client-dat",
-  "version": "20.07.09",
+  "version": "20.07.11",
   "description": "Federated Wiki - hyperdrive protocol variant of the Client-side Javascript",
   "keywords": [
     "wiki",
